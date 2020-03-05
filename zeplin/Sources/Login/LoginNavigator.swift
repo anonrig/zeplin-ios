@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import RxSwift
 
 protocol LoginNavigator: Navigator {}
 
@@ -20,10 +21,11 @@ extension LoginNavigator where Self: LoginViewController {
             .asObservable()
             .subscribe(onNext: { response in
                 viewController.dismiss(animated: true, completion: nil)
-                if let response = response {
-                    NetworkProvider.shared.jwtToken = response.token
+                if let token = response?.token, let user = response?.user {
+                    NetworkProvider.shared.jwtToken = token
+                    
+                    CurrentUser.accept(user)
                     self.completionObservable.onNext(())
-                    self.completionObservable.onCompleted()
                 }
             })
             .disposed(by: viewController.bag)

@@ -43,7 +43,6 @@ extension LoginViewController: LoginNavigator {
             .asDriver()
             .drive(onNext: { _ in
                 self.openLogin()
-//                self.completionObservable.onNext(())
             })
             .disposed(by: viewSource.bag)
     }

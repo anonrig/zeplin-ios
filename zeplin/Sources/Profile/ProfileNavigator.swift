@@ -47,7 +47,8 @@ extension ProfileNavigator where Self: ProfileViewController {
     }
     
     func logout() {
-        self.logoutObserrvable.onNext(())
+        NetworkProvider.shared.removeToken()
+        self.logoutObservable.onNext(())
     }
 }
 

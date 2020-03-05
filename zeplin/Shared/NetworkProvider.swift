@@ -36,6 +36,10 @@ class NetworkProvider {
         }
     }
     
+    func removeToken() {
+        keychain.delete("jwt")
+    }
+
     func getCurrentUser() -> Observable<User> {
         let url = baseUrl + "user/me"
         let headers = self.getHeaders()

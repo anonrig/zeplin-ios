@@ -14,12 +14,15 @@ extension AppInit {
     
     var loginController: UIViewController {
         let viewController = LoginViewController()
+
         viewController.completionObservable
             .asObservable()
+            .single()
             .subscribe(onNext: { _ in
                 self.rootControllerDefinedObserver.onNext(self.projectsController)
             })
             .disposed(by: viewController.bag)
+        
         return viewController
     }
     
@@ -30,6 +33,7 @@ extension AppInit {
         
         viewController.logoutObservable
             .asObservable()
+            .single()
             .subscribe(onNext: { _ in
                 self.rootControllerDefinedObserver.onNext(self.loginController)
             })
