@@ -33,7 +33,7 @@ extension ProjectsViewModel {
                 self.projects.accept(projects)
                 self.sections.accept([
                     ProjectsSection(header: "Projects".localized(), projects: projects.filter { $0.status != ProjectStatus.archived}),
-                    ProjectsSection(header: "Archived Projects".localized(), projects: projects.filter { $0.status != ProjectStatus.archived})
+                    ProjectsSection(header: "Archived Projects".localized(), projects: projects.filter { $0.status == ProjectStatus.archived})
                 ])
             })
             .disposed(by: bag)
