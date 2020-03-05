@@ -79,7 +79,14 @@ final class ProfileView: UIView {
         return label
     }()
     
-    private lazy var buttonStack: UIStackView = .create(arrangedSubViews: [privacyPolicyButton, contactButton, logoutButton, informationLabel], axis: .vertical, alignment: .fill, distribution: .fill, spacing: 0)
+    private var separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hex: 0x545458)!.withAlphaComponent(0.65)
+        view.snp.makeConstraints { $0.height.equalTo(1) }
+        return view
+    }()
+    
+    private lazy var buttonStack: UIStackView = .create(arrangedSubViews: [privacyPolicyButton, separator, contactButton, logoutButton, informationLabel], axis: .vertical, alignment: .fill, distribution: .fill, spacing: 0)
     
     // MARK: - Initialization
     init() {
@@ -111,6 +118,7 @@ final class ProfileView: UIView {
     }
 }
 
+// MARK: - Populate
 extension ProfileView {
     func populate(with user: User) {
         if let avatar = user.avatar {
