@@ -21,6 +21,7 @@ extension SplashViewModel: SplashApi {
     func retrieveUser(with jwt: String) -> Observable<User> {
         return NetworkProvider.shared
             .getCurrentUser()
+            .do(onError: { error in self.onError.accept(self.handleError(error: error)) })
     }
     
     func fetchData() {
