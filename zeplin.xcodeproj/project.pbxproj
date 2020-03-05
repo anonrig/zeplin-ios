@@ -596,7 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = KPEKRP6RU9;
 				INFOPLIST_FILE = zeplin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -604,6 +604,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin;
 				PRODUCT_NAME = Zeplin;
 				SWIFT_VERSION = 5.0;
@@ -616,7 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = KPEKRP6RU9;
 				INFOPLIST_FILE = zeplin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -624,6 +625,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin;
 				PRODUCT_NAME = Zeplin;
 				SWIFT_VERSION = 5.0;
