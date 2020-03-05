@@ -58,6 +58,7 @@
 		95AAE11B240B094E00A2001A /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE11A240B094E00A2001A /* Section.swift */; };
 		95AAE11D240B0CD600A2001A /* ProjectsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE11C240B0CD600A2001A /* ProjectsNavigator.swift */; };
 		95AAE121240B151000A2001A /* ProjectEditBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE120240B151000A2001A /* ProjectEditBarView.swift */; };
+		95C5F3E42411AE4500061174 /* RxKingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C5F3E32411AE4500061174 /* RxKingfisher.swift */; };
 		95E30D95240DA4C40086A36D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E30D94240DA4C40086A36D /* NotificationsView.swift */; };
 		95E30D97240DA4CE0086A36D /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E30D96240DA4CE0086A36D /* NotificationsViewModel.swift */; };
 		95E30D99240DA4D80086A36D /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E30D98240DA4D80086A36D /* NotificationsViewController.swift */; };
@@ -121,6 +122,7 @@
 		95AAE11A240B094E00A2001A /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		95AAE11C240B0CD600A2001A /* ProjectsNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNavigator.swift; sourceTree = "<group>"; };
 		95AAE120240B151000A2001A /* ProjectEditBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditBarView.swift; sourceTree = "<group>"; };
+		95C5F3E32411AE4500061174 /* RxKingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxKingfisher.swift; sourceTree = "<group>"; };
 		95E30D94240DA4C40086A36D /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		95E30D96240DA4CE0086A36D /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		95E30D98240DA4D80086A36D /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				955B858E240A874800239894 /* Extensions.swift */,
 				955B858F240A874800239894 /* Navigator.swift */,
 				955B858B240A874800239894 /* NetworkProvider.swift */,
+				95C5F3E32411AE4500061174 /* RxKingfisher.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				95AAE100240ADE8F00A2001A /* CallbackResponse.swift in Sources */,
 				953C072E240F8A5C0071842A /* ScreenSection.swift in Sources */,
 				955B8586240A86E400239894 /* LoginViewModel.swift in Sources */,
+				95C5F3E42411AE4500061174 /* RxKingfisher.swift in Sources */,
 				95AAE104240AF4D300A2001A /* ProjectStatus.swift in Sources */,
 				955B85A3240A965800239894 /* ProjectsEmptyView.swift in Sources */,
 				953C0732240FDA910071842A /* ScreenView.swift in Sources */,

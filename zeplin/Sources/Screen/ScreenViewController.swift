@@ -9,8 +9,9 @@
 import UIKit
 import RxSwift
 import ios_toolkit
+import Kingfisher
 
-final class ScreenViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
+final class ScreenViewController: UIViewController, ios_toolkit.View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties
     private lazy var viewSource = ScreenView()
     
@@ -49,22 +50,15 @@ final class ScreenViewController: UIViewController, View, ErrorDisplayer, Loadin
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: viewSource.screenModeButton)
         viewSource.screenModeButton.snp.makeConstraints { $0.width.equalTo(60) }
         
-        if let image = viewModel.screen.value.image?.original_url {
-            if let url = URL(string: image) {
-                viewSource.screenImage.kf.setImage(with: url) {
-                    switch $0 {
-                    case .success(let result):
-                        self.viewSource.imageScrollView.layoutIfNeeded()
-                        self.setScrollViewZoom(for: self.viewSource.imageScrollView)
-                    case .failure(let error):
-                        print("error", error)
-                    }
-                }
-                viewSource.imageScrollView.layoutIfNeeded()
-                setScrollViewZoom(for: self.viewSource.imageScrollView)
-                viewSource.imageScrollView.zoomScale = 0.55
-            }
-        }
+        Observable.just((viewModel.screen.value.image?.original_url))
+            .ignoreNil()
+            .map { URL(string: $0) }
+            .ignoreNil()
+            .flatMap { self.viewSource.screenImage.kf.rx.setImage(with: $0) }
+            .subscribe(onNext: { image in
+                self.setZoom(forOriginal: true)
+            })
+            .disposed(by: bag)
     }
 }
 
@@ -80,10 +74,7 @@ private extension ScreenViewController {
                 let newValue = !self.viewModel.isOriginalMode.value
                 self.viewModel.isOriginalMode.accept(newValue)
                 
-                let scale = newValue ? 0.55 : 0.4
-                self.viewSource.imageScrollView.setZoomScale(CGFloat(scale), animated: true)
-                self.viewSource.imageScrollView.layoutIfNeeded()
-                self.setScrollViewZoom(for: self.viewSource.imageScrollView)
+                self.setZoom(forOriginal: newValue)
             })
             .disposed(by: viewSource.bag)
         
@@ -118,9 +109,19 @@ extension ScreenViewController: UIScrollViewDelegate {
     }
     
     private func setScrollViewZoom(for scrollView: UIScrollView) {
-        let offsetX = max((scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0)
-        let offsetY = max((scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0)
+        let offsetX = max((UIScreen.main.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0)
+        let offsetY = max((UIScreen.main.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0)
 
-        scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: offsetY, right: offsetX);
+        scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: offsetY, right: offsetX)
+    }
+    
+    private func setZoom(forOriginal: Bool = false) {
+        viewSource.imageScrollView.layoutSubviews()
+
+        let minZoom = min(min(UIScreen.main.bounds.width / viewSource.screenImage.bounds.size.width, UIScreen.main.bounds.height / viewSource.screenImage.bounds.size.height), 1.0)
+
+        viewSource.imageScrollView.minimumZoomScale = forOriginal ? minZoom * 0.9 : minZoom
+        viewSource.imageScrollView.zoomScale = forOriginal ? minZoom * 0.9 : minZoom
+        setScrollViewZoom(for: viewSource.imageScrollView)
     }
 }

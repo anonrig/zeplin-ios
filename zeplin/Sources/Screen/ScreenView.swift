@@ -28,9 +28,8 @@ final class ScreenView: UIView {
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = false
         view.addSubview(screenImage)
+        view.contentMode = .scaleAspectFit
         screenImage.snp.makeConstraints { $0.edges.equalTo(view) }
-        view.minimumZoomScale = 0.3
-        view.maximumZoomScale = 2
         return view
     }()
 
