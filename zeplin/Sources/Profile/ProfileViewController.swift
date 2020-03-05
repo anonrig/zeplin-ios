@@ -21,14 +21,14 @@ final class ProfileViewController: UIViewController, View, ErrorDisplayer, Loadi
     private(set) var viewModel: ProfileViewModel
     private(set) var completionObservable = PublishSubject<Void>()
     private(set) var loadingView: LoadingView
-    private(set) var logoutObserrvable = PublishSubject<Void>()
+    private(set) var logoutObservable = PublishSubject<Void>()
     
     // MARK: - Initialization
     init(with onLogout: PublishSubject<Void>) {
         bag = DisposeBag()
         viewModel = ProfileViewModel()
         loadingView = LoadingView()
-        logoutObserrvable = onLogout
+        logoutObservable = onLogout
         
         super.init(nibName: nil, bundle: nil)
         
