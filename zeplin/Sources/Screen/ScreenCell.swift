@@ -27,7 +27,7 @@ final class ScreenCell: UICollectionViewCell {
         view.textAlignment = .left
         view.textColor = .white
         view.font = .medium(12)
-      view.backgroundColor = Colors.profileButtonsBackground.color
+        view.backgroundColor = Colors.profileButtonsBackground.color
         view.padding = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         view.snp.makeConstraints { $0.height.equalTo(32) }
         return view
