@@ -27,7 +27,7 @@ final class SplashViewController: UIViewController, View, ErrorDisplayer, Loadin
     // MARK: - Life cycle
     override func loadView() {
         view = viewSource
-        view.backgroundColor = UIColor(hex: 0x1d1d1d)
+      view.backgroundColor = Colors.windowBackgroundBlack.color
     }
     
     required init?(coder aDecoder: NSCoder) {

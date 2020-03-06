@@ -16,7 +16,7 @@ final class ProjectView: UIView {
     
     private var emptyView = ProjectsEmptyView()
     
-    private(set) var editModeButton: UIButton = .create(numberOfLines: 1, horizontalAlignment: .trailing, verticalAlignment: .center, backgroundColor: .clear, title: "Select".localized(), titleColor: UIColor(hex: 0xfecf33)!, font: .regular(17))
+  private(set) var editModeButton: UIButton = .create(numberOfLines: 1, horizontalAlignment: .trailing, verticalAlignment: .center, backgroundColor: .clear, title: "Select".localized(), titleColor: Colors.mustardYellow.color, font: .regular(17))
     
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()

@@ -70,6 +70,8 @@
 		95E30DA6240E797E0086A36D /* ProjectsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E30DA5240E797E0086A36D /* ProjectsHeaderView.swift */; };
 		95E30DA9240E7DED0086A36D /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 95E30DA8240E7DED0086A36D /* RxDataSources */; };
 		95E30DAB240E7E600086A36D /* ProjectsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E30DAA240E7E600086A36D /* ProjectsSection.swift */; };
+		999F72DC24123F7700BD539F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 999F72DB24123F7700BD539F /* Colors.xcassets */; };
+		999F72DF24123FE800BD539F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999F72DE24123FE800BD539F /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +135,8 @@
 		95E30DA3240DAFCA0086A36D /* ProfileNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigator.swift; sourceTree = "<group>"; };
 		95E30DA5240E797E0086A36D /* ProjectsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsHeaderView.swift; sourceTree = "<group>"; };
 		95E30DAA240E7E600086A36D /* ProjectsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsSection.swift; sourceTree = "<group>"; };
+		999F72DB24123F7700BD539F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		999F72DE24123FE800BD539F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,11 +174,12 @@
 		955B854F240A858000239894 /* zeplin */ = {
 			isa = PBXGroup;
 			children = (
+				999F72DD24123FD700BD539F /* Helpers */,
+				999F72DA24123F6400BD539F /* Resources */,
 				95AAE0FC240ADE3200A2001A /* Models */,
 				955B8589240A873500239894 /* Shared */,
 				955B8569240A86A300239894 /* Sources */,
 				955B8550240A858000239894 /* AppDelegate.swift */,
-				955B8559240A858200239894 /* Assets.xcassets */,
 				955B855B240A858200239894 /* LaunchScreen.storyboard */,
 				955B855E240A858200239894 /* Info.plist */,
 				955B8567240A867500239894 /* AppInit.swift */,
@@ -321,6 +326,23 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		999F72DA24123F6400BD539F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				955B8559240A858200239894 /* Assets.xcassets */,
+				999F72DB24123F7700BD539F /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		999F72DD24123FD700BD539F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				999F72DE24123FE800BD539F /* Colors.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -393,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				955B855D240A858200239894 /* LaunchScreen.storyboard in Resources */,
+				999F72DC24123F7700BD539F /* Colors.xcassets in Resources */,
 				955B855A240A858200239894 /* Assets.xcassets in Resources */,
 				953C072C240F85BA0071842A /* loading-animation.json in Resources */,
 			);
@@ -422,6 +445,7 @@
 				95E30DA6240E797E0086A36D /* ProjectsHeaderView.swift in Sources */,
 				95AAE116240B08BD00A2001A /* Screen.swift in Sources */,
 				95AAE106240AF53A00A2001A /* Platform.swift in Sources */,
+				999F72DF24123FE800BD539F /* Colors.swift in Sources */,
 				955B85A5240AC69C00239894 /* LoginWebViewController.swift in Sources */,
 				955B8581240A86BE00239894 /* SplashApi.swift in Sources */,
 				95E30D9E240DAAC40086A36D /* ProfileView.swift in Sources */,
@@ -597,7 +621,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				DEVELOPMENT_TEAM = CN7VBMZQZ3;
 				INFOPLIST_FILE = zeplin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -605,7 +629,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin;
+				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin1;
 				PRODUCT_NAME = Zeplin;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -618,7 +642,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				DEVELOPMENT_TEAM = CN7VBMZQZ3;
 				INFOPLIST_FILE = zeplin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -626,7 +650,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin;
+				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin1;
 				PRODUCT_NAME = Zeplin;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

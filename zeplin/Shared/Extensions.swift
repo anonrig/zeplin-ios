@@ -29,15 +29,15 @@ var bundleID: String {
 
 extension UINavigationController {
     func setupStyling() {
-        navigationBar.backgroundColor = UIColor(hex: 0x1d1d1d)
+      navigationBar.backgroundColor = Colors.windowBackgroundBlack.color
         navigationBar.isTranslucent = false
         navigationBar.setTitleFont(.semiBold(17))
-        navigationBar.tintColor = UIColor(hex: 0xfecf33)
+      navigationBar.tintColor = Colors.mustardYellow.color
         
         if #available(iOS 13.0, *) {
-            navigationBar.standardAppearance.backgroundColor = UIColor(hex: 0x1d1d1d)
-            navigationBar.compactAppearance?.backgroundColor = UIColor(hex: 0x1d1d1d)
-            navigationBar.scrollEdgeAppearance?.backgroundColor = UIColor(hex: 0x1d1d1d)
+            navigationBar.standardAppearance.backgroundColor = Colors.windowBackgroundBlack.color
+            navigationBar.compactAppearance?.backgroundColor = Colors.windowBackgroundBlack.color
+            navigationBar.scrollEdgeAppearance?.backgroundColor = Colors.windowBackgroundBlack.color
         } else {
             // Fallback on earlier versions
         }

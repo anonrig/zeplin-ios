@@ -20,7 +20,7 @@ final class ProjectEditBarView: UIView {
     init() {
         super.init(frame: .zero)
         
-        backgroundColor = UIColor(hex: 0x2f3033)
+      backgroundColor = Colors.profileButtonsBackground.color
         
         [titleLabel, deleteButton].forEach(addSubview(_:))
         

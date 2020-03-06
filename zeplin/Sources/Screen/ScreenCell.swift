@@ -27,7 +27,7 @@ final class ScreenCell: UICollectionViewCell {
         view.textAlignment = .left
         view.textColor = .white
         view.font = .medium(12)
-        view.backgroundColor = UIColor(hex: 0x2f3033)
+      view.backgroundColor = Colors.profileButtonsBackground.color
         view.padding = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         view.snp.makeConstraints { $0.height.equalTo(32) }
         return view
@@ -57,7 +57,7 @@ final class ScreenCell: UICollectionViewCell {
         super.init(frame: .zero)
         
         [verticalStack, overlay].forEach(addSubview(_:))
-        backgroundColor = UIColor(hex: 0x2f3033)
+      backgroundColor = Colors.profileButtonsBackground.color
         cornerRadius = 4
         
         verticalStack.snp.makeConstraints { $0.edges.equalToSuperview() }
