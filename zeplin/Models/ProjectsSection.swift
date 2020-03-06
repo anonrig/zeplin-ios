@@ -13,6 +13,7 @@ import UIKit
 
 struct ProjectsSection {
     var header: String
+    var status: ProjectStatus
     var projects: [Project]
     var isCollapsed: Bool = false
 }
@@ -32,5 +33,11 @@ extension ProjectsSection: AnimatableSectionModelType {
     init(original: ProjectsSection, items: [Item]) {
         self = original
         self.projects = items
+    }
+}
+
+extension Sequence where Iterator.Element == ProjectsSection {
+    func get(for status: ProjectStatus) -> [ProjectsSection] {
+        return self.filter { $0.status == status }
     }
 }

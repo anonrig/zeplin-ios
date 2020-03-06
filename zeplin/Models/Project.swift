@@ -60,3 +60,9 @@ struct Project: Mappable, IdentifiableType, Equatable {
         members <- map["members"]
     }
 }
+
+extension Sequence where Iterator.Element == Project {
+    func get(for status: ProjectStatus) -> [Project] {
+        return self.filter { $0.status == status }
+    }
+}
