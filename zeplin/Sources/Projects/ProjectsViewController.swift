@@ -42,6 +42,9 @@ final class ProjectsViewController: UIViewController, View, ErrorDisplayer, Load
         navigationItem.titleView = UIImageView(image: UIImage(named: "logoZeplin"))
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: viewSource.notificationsButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: viewSource.profileButton)
+        
+        definesPresentationContext = true
+        navigationItem.searchController = viewModel.searchController
     }
 }
 
@@ -79,7 +82,26 @@ extension ProjectsViewController: ProjectsNavigator {
         viewSource.collectionView.rx.setDelegate(self)
             .disposed(by: bag)
         
-        viewModel.projects
+        viewSource.refreshControl.rx.controlEvent(.valueChanged)
+            .asDriver()
+            .drive(onNext: { _ in
+                self.viewModel.getProjects(isRefresh: true)
+            })
+            .disposed(by: viewSource.bag)
+        
+        viewModel.isRefreshing
+            .asDriver()
+            .drive(onNext: { isRefreshing in
+                let control = self.viewSource.refreshControl
+                if isRefreshing {
+                    control.beginRefreshing()
+                } else {
+                    control.endRefreshing()
+                }
+            })
+            .disposed(by: viewModel.bag)
+        
+        viewModel.shownSections
             .asDriver()
             .map { $0.count > 0 ? nil : self.viewSource.emptyView }
             .drive(onNext: {
@@ -87,7 +109,7 @@ extension ProjectsViewController: ProjectsNavigator {
             })
             .disposed(by: viewModel.bag)
 
-        viewModel.sections
+        viewModel.shownSections
             .asObservable()
             .bind(to: viewSource.collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.bag)

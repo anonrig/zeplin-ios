@@ -19,19 +19,20 @@ final class ProjectsView: UIView {
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 23
         layout.minimumLineSpacing = 23
-        layout.sectionInset = .zero
-        layout.invalidateLayout()
+        layout.sectionInset = .init(horizontal: 48, vertical: 0)
         return layout
     }()
+    
+    private(set) var refreshControl = UIRefreshControl()
     
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 24, right: 24)
         collectionView.register(ProjectCell.self, forCellWithReuseIdentifier: "ProjectCell")
         collectionView.register(supplementaryViewOfKind: "ProjectsHeaderView", withClass: ProjectsHeaderView.self)
         collectionView.register(supplementaryViewOfKind: "ProjectsArchivedHeaderView", withClass: ProjectsArchivedHeaderView.self)
+        collectionView.addSubview(refreshControl)
         return collectionView
     }()
 

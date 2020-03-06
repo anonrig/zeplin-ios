@@ -45,16 +45,16 @@ final class ProjectsArchivedHeaderView: UICollectionReusableView {
         [titleLabel, collapseButton, descriptionLabel].forEach(addSubview(_:))
         
         titleLabel.snp.makeConstraints {
-            $0.leading.top.equalToSuperview().inset(UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0))
+            $0.leading.top.equalToSuperview().inset(UIEdgeInsets(top: 32, left: 24, bottom: 0, right: 24))
         }
         
         collapseButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-24)
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(UIEdgeInsets(horizontal: 48, vertical: 0))
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
                 
@@ -83,7 +83,7 @@ private extension ProjectsArchivedHeaderView {
         
         isCollapsed
             .asObservable()
-            .map { $0 ? self.chevronUpImage : self.chevronDownImage}
+            .map { $0 ? self.chevronDownImage : self.chevronUpImage }
             .bind(to: collapseButton.rx.image(for: .normal))
             .disposed(by: bag)
     }

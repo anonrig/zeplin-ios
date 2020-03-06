@@ -20,7 +20,7 @@ final class ProjectsHeaderView: UICollectionReusableView {
         [titleLabel].forEach(addSubview(_:))
         
         titleLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 20, left: 0, bottom: 32, right: 0))
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 20, left: 24, bottom: 32, right: 24))
         }
     }
     
