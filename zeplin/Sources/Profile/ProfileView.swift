@@ -35,7 +35,7 @@ final class ProfileView: UIView {
         let view = UIButton(type: .custom)
         view.setTitle("Privacy Policy".localized(), for: .normal)
         view.setTitleColor(.white, for: .normal)
-      view.backgroundColor = Colors.profileButtonsBackground.color
+        view.backgroundColor = Colors.profileButtonsBackground.color
         view.titleLabel?.font = UIFont.regular(17)
         view.contentHorizontalAlignment = .leading
         view.titleEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
