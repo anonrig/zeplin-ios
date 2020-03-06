@@ -47,7 +47,7 @@ final class ProjectCell: UICollectionViewCell {
     private lazy var mainStack: UIStackView = .create(arrangedSubViews: [imageView, bottomContainer], axis: .vertical, alignment: .fill, distribution: .fillEqually, spacing: 0)
     private lazy var overlay: UIView = {
         let view = UIView()
-      view.backgroundColor = Colors.profileButtonsBackground.color
+        view.backgroundColor = Colors.profileButtonsBackground.color
         return view
     }()
     
