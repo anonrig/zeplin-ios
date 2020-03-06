@@ -14,7 +14,7 @@ final class ProjectCell: UICollectionViewCell {
         let view = UIImageView()
         view.kf.indicatorType = .activity
         view.contentMode = .scaleAspectFill
-      view.backgroundColor = Colors.windowBackgroundBlack.color
+        view.backgroundColor = Colors.windowBackgroundBlack.color
         view.clipsToBounds = true
         return view
     }()
