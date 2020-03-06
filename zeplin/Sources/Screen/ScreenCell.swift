@@ -57,7 +57,7 @@ final class ScreenCell: UICollectionViewCell {
         super.init(frame: .zero)
         
         [verticalStack, overlay].forEach(addSubview(_:))
-      backgroundColor = Colors.profileButtonsBackground.color
+        backgroundColor = Colors.profileButtonsBackground.color
         cornerRadius = 4
         
         verticalStack.snp.makeConstraints { $0.edges.equalToSuperview() }
@@ -83,4 +83,3 @@ extension ScreenCell {
         }
     }
 }
-
