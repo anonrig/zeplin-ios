@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .disposed(by: bag)
 
         window.rootViewController = rootController
-        window.backgroundColor = UIColor(hex: 0x1d1d1d)
+      window.backgroundColor = Colors.windowBackgroundBlack.color
         window.makeKeyAndVisible()
         return window
     }()

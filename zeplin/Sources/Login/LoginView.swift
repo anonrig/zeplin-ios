@@ -20,7 +20,7 @@ final class LoginView: UIView {
         view.setTitleColor(.white, for: .normal)
         view.titleLabel?.font = UIFont.semiBold(16)
         view.cornerRadius = 24
-        view.backgroundColor = UIColor(hex: 0x419bf9)
+        view.backgroundColor = Colors.loginButtonBlue.color
         view.snp.makeConstraints {
             $0.height.equalTo(48)
         }

@@ -40,7 +40,7 @@ final class ProfileViewController: UIViewController, View, ErrorDisplayer, Loadi
     // MARK: - Life cycle
     override func loadView() {
         view = viewSource
-        view.backgroundColor = UIColor(hex: 0x1d1d1d)
+        view.backgroundColor = Colors.windowBackgroundBlack.color
     }
     
     required init?(coder aDecoder: NSCoder) {

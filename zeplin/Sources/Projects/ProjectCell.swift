@@ -14,17 +14,17 @@ final class ProjectCell: UICollectionViewCell {
         let view = UIImageView()
         view.kf.indicatorType = .activity
         view.contentMode = .scaleAspectFill
-        view.backgroundColor = UIColor(hex: 0x1d1d1d)
+        view.backgroundColor = Colors.windowBackgroundBlack.color
         view.clipsToBounds = true
         return view
     }()
     
-    private var platformLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .left, textColor: UIColor(hex: 0x419bf9)!, font: .medium(12))
-    private var dateLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .right, textColor: UIColor(hex: 0xa1a2a3)!, font: .medium(12))
+  private var platformLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .left, textColor: Colors.loginButtonBlue.color, font: .medium(12))
+  private var dateLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .right, textColor: Colors.descriptionGray.color, font: .medium(12))
     
     private var projectLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .left, textColor: .white, font: .medium(12))
     
-    private var memberCountLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .right, textColor: UIColor(hex: 0xa1a2a3)!, font: .semiBold(11))
+    private var memberCountLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .right, textColor: Colors.descriptionGray.color, font: .semiBold(11))
 
     private lazy var horizontalStack: UIStackView = .create(arrangedSubViews: [platformLabel, dateLabel], axis: .horizontal, alignment: .fill, distribution: .fill, spacing: 0)
     
@@ -47,7 +47,7 @@ final class ProjectCell: UICollectionViewCell {
     private lazy var mainStack: UIStackView = .create(arrangedSubViews: [imageView, bottomContainer], axis: .vertical, alignment: .fill, distribution: .fillEqually, spacing: 0)
     private lazy var overlay: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hex: 0x2f3033)
+        view.backgroundColor = Colors.profileButtonsBackground.color
         return view
     }()
     
@@ -56,7 +56,7 @@ final class ProjectCell: UICollectionViewCell {
         super.init(frame: .zero)
         
         [mainStack, overlay].forEach(addSubview(_:))
-        backgroundColor = UIColor(hex: 0x2f3033)
+        backgroundColor = Colors.profileButtonsBackground.color
         cornerRadius = 4
         
         mainStack.snp.makeConstraints { $0.edges.equalToSuperview() }

@@ -13,7 +13,7 @@ final class ProjectsEmptyView: UIView {
     // MARK: - Properties
     private var titleLabel: UILabel = .create(text: "You have no projects".localized(), numberOfLines: 0, textAlignment: .left, textColor: .white, font: .bold(22))
     
-    private var descriptionLabel: UILabel = .create(text: "When you create a project on Zeplin, it will appear here.".localized(), numberOfLines: 0, textAlignment: .left, textColor: UIColor(hex: 0xa1a2a3)!, font: .regular(11))
+  private var descriptionLabel: UILabel = .create(text: "When you create a project on Zeplin, it will appear here.".localized(), numberOfLines: 0, textAlignment: .left, textColor: Colors.profileButtonsBackground.color, font: .regular(11))
     
     private var projectEmptyImage = UIImage(named: "projectEmpty")
     

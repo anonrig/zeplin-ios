@@ -23,7 +23,7 @@ final class ProjectsArchivedHeaderView: UICollectionReusableView {
             "Owners and admins can re-activate them anytime from the web, if they have a subscription."
         ].joined(separator: "\n")
         
-        return .create(text: texts, numberOfLines: 0, textAlignment: .left, textColor: UIColor(hex: 0xa1a2a3)!, font: .regular(11))
+      return .create(text: texts, numberOfLines: 0, textAlignment: .left, textColor: Colors.descriptionGray.color, font: .regular(11))
     }()
     
     private var chevronDownImage = UIImage(named: "icoChevronDown")

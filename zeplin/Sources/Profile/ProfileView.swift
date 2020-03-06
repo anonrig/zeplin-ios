@@ -35,7 +35,7 @@ final class ProfileView: UIView {
         let view = UIButton(type: .custom)
         view.setTitle("Privacy Policy".localized(), for: .normal)
         view.setTitleColor(.white, for: .normal)
-        view.backgroundColor = UIColor(hex: 0x2f3033)
+        view.backgroundColor = Colors.profileButtonsBackground.color
         view.titleLabel?.font = UIFont.regular(17)
         view.contentHorizontalAlignment = .leading
         view.titleEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
@@ -47,7 +47,7 @@ final class ProfileView: UIView {
         let view = UIButton(type: .custom)
         view.setTitle("Contact Us".localized(), for: .normal)
         view.setTitleColor(.white, for: .normal)
-        view.backgroundColor = UIColor(hex: 0x2f3033)
+        view.backgroundColor = Colors.profileButtonsBackground.color
         view.titleLabel?.font = UIFont.regular(17)
         view.contentHorizontalAlignment = .leading
         view.titleEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
@@ -59,7 +59,7 @@ final class ProfileView: UIView {
         let view = UIButton(type: .custom)
         view.setTitle("Log Out".localized(), for: .normal)
         view.setTitleColor(.white, for: .normal)
-        view.backgroundColor = UIColor(hex: 0x2f3033)
+        view.backgroundColor = Colors.profileButtonsBackground.color
         view.titleLabel?.font = UIFont.regular(17)
         view.contentHorizontalAlignment = .leading
         view.titleEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
@@ -74,14 +74,14 @@ final class ProfileView: UIView {
             "Zeplin logo is a trademark by Zeplin, Inc.".localized()
         ].joined(separator: "\n")
         
-        let label: UILabel = .create(text: texts, numberOfLines: 0, textAlignment: .center, textColor: UIColor(hex: 0xa1a2a3)!, font: .regular(11))
+      let label: UILabel = .create(text: texts, numberOfLines: 0, textAlignment: .center, textColor: Colors.descriptionGray.color, font: .regular(11))
         label.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.2)
         return label
     }()
     
     private var separator: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hex: 0x545458)!.withAlphaComponent(0.65)
+        view.backgroundColor = Colors.seperatorGray.color
         view.snp.makeConstraints { $0.height.equalTo(1) }
         return view
     }()

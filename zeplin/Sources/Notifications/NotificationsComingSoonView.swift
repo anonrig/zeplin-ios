@@ -13,7 +13,7 @@ import ios_toolkit
 final class NotificationsComingSoonView: UIView {
     // MARK: - Properties
     private var headerLabel: UILabel = .create(text: "Too soon!".localized(), numberOfLines: 0, textAlignment: .left, textColor: .white, font: .bold(22))
-    private var descriptionLabel: UILabel = .create(text: "We are currently working on this feature right now. Your notifications will appear here when Zeplin API provides them.".localized(), numberOfLines: 0, textAlignment: .left, textColor: UIColor(hex: 0xa1a2a3)!, font: .regular(11))
+  private var descriptionLabel: UILabel = .create(text: "We are currently working on this feature right now. Your notifications will appear here when Zeplin API provides them.".localized(), numberOfLines: 0, textAlignment: .left, textColor: Colors.descriptionGray.color, font: .regular(11))
     
     private var imageView: UIImageView = UIImageView(image: UIImage(named: "imgApi"))
     
