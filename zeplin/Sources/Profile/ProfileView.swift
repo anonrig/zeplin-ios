@@ -69,7 +69,7 @@ final class ProfileView: UIView {
     
     private var informationLabel: UILabel = {
         let texts = [
-            "This is an app created by a couple Zeplin admirers from Istanbul.".localized(),
+            "This app is created by two Zeplin admirers in Istanbul.".localized(),
             "We have no association with Zeplin, Inc.".localized(),
             "Zeplin logo is a trademark by Zeplin, Inc.".localized()
         ].joined(separator: "\n")
