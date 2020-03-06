@@ -15,7 +15,7 @@ final class SplashView: UIView {
         
         [logoImageView].forEach(addSubview(_:))
         
-      backgroundColor = Colors.windowBackgroundBlack.color
+        backgroundColor = Colors.windowBackgroundBlack.color
 
         logoImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
