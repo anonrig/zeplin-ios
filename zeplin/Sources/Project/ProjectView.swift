@@ -25,18 +25,19 @@ final class ProjectView: UIView {
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 23
         layout.minimumLineSpacing = 23
-        layout.sectionInset = .zero
+        layout.sectionInset = UIEdgeInsets(horizontal: 48, vertical: 0)
         layout.invalidateLayout()
         return layout
     }()
     
+    private(set) var refreshControl = UIRefreshControl()
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 24, right: 24)
         collectionView.register(ScreenCell.self, forCellWithReuseIdentifier: "ScreenCell")
         collectionView.register(supplementaryViewOfKind: "ScreenSectionHeaderView", withClass: ScreenSectionHeaderView.self)
+        collectionView.refreshControl = refreshControl
         return collectionView
     }()
     

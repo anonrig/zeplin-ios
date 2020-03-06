@@ -19,6 +19,7 @@ final class ProjectViewModel: ViewModel, RemoteLoading, ErrorHandler {
     private(set) var project: BehaviorRelay<Project>
     private(set) var editModeEnabled = BehaviorRelay<Bool>(value: false)
     private(set) var selectedScreens = BehaviorRelay<[Screen]>(value: [])
+    private(set) var isRefreshing = BehaviorRelay<Bool>(value: false)
     
     init(with project: Project) {
         bag = DisposeBag()
@@ -30,14 +31,16 @@ final class ProjectViewModel: ViewModel, RemoteLoading, ErrorHandler {
 
 // MARK: - Fetch resource
 extension ProjectViewModel {
-    private func getScreens() {
+    func getScreens(isRefresh: Bool = false) {
+        let loadingHandler = isRefresh ? isRefreshing : isLoading
+
         Observable.just((project.value))
-            .do(onNext: { _ in self.isLoading.accept(true) })
+            .do(onNext: { _ in loadingHandler.accept(true) })
             .flatMap(NetworkProvider.shared.getScreens)
-            .do(onNext: { _ in self.isLoading.accept(false) })
+            .do(onNext: { _ in loadingHandler.accept(false) })
             .catchError({ error -> Observable<[ScreenSection]> in
                 self.onError.accept(self.handleError(error: error))
-                self.isLoading.accept(false)
+                loadingHandler.accept(false)
                 return .just([])
             })
             .bind(to: sections)

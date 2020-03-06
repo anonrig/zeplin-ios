@@ -80,7 +80,7 @@ private extension ScreenViewController {
         
         viewModel.isOriginalMode
             .asObservable()
-            .map { $0 ? "Original".localized() : "Fit".localized() }
+            .map { $0 ? "Fit".localized() : "Original".localized() }
             .bind(to: viewSource.screenModeButton.rx.title())
             .disposed(by: viewModel.bag)
         

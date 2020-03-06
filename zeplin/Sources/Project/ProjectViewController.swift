@@ -91,6 +91,25 @@ extension ProjectViewController: ProjectNavigator {
         viewSource.collectionView.rx.setDelegate(self)
             .disposed(by: bag)
         
+        viewSource.refreshControl.rx.controlEvent(.valueChanged)
+            .asDriver()
+            .drive(onNext: { _ in
+                self.viewModel.getScreens(isRefresh: true)
+            })
+            .disposed(by: viewSource.bag)
+        
+        viewModel.isRefreshing
+            .asDriver()
+            .drive(onNext: { isRefreshing in
+                let control = self.viewSource.refreshControl
+                if isRefreshing {
+                    control.beginRefreshing()
+                } else {
+                    control.endRefreshing()
+                }
+            })
+            .disposed(by: viewModel.bag)
+        
         viewModel.editModeEnabled
             .asDriver()
             .drive(onNext: { enabled in

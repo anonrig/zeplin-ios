@@ -14,7 +14,7 @@ final class ScreenView: UIView {
     // MARK: - Properties
     var bag = DisposeBag()
 
-  private(set) var screenModeButton: UIButton = .create(numberOfLines: 1, horizontalAlignment: .trailing, verticalAlignment: .center, backgroundColor: .clear, backgroundImage: nil, image: nil, title: "Fit".localized(), titleColor: Colors.profileButtonsBackground.color, font: .regular(17))
+    private(set) var screenModeButton: UIButton = .create(numberOfLines: 1, horizontalAlignment: .trailing, verticalAlignment: .center, backgroundColor: .clear, backgroundImage: nil, image: nil, title: "Fit".localized(), titleColor: Colors.mustardYellow.color, font: .regular(17))
     
     private(set) lazy var screenImage: UIImageView = {
         let view = UIImageView(image: nil)

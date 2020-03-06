@@ -35,12 +35,13 @@ final class ScreenSectionHeaderView: UICollectionReusableView {
         [titleLabel, collapseButton].forEach(addSubview(_:))
         
         titleLabel.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+            $0.leading.bottom.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 24, bottom: 20, right: 0))
+            $0.trailing.equalTo(collapseButton.snp.leading).offset(-16)
         }
         
         collapseButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-24)
         }
         
         listenForTaps()
@@ -73,7 +74,7 @@ private extension ScreenSectionHeaderView {
         
         isCollapsed
             .asObservable()
-            .map { $0 ? self.chevronUpImage : self.chevronDownImage}
+            .map { $0 ? self.chevronDownImage : self.chevronUpImage }
             .bind(to: collapseButton.rx.image(for: .normal))
             .disposed(by: bag)
     }
