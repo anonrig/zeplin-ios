@@ -81,7 +81,7 @@ final class ProfileView: UIView {
     
     private var separator: UIView = {
         let view = UIView()
-      view.backgroundColor = Colors.seperatorGray.color
+        view.backgroundColor = Colors.seperatorGray.color
         view.snp.makeConstraints { $0.height.equalTo(1) }
         return view
     }()
