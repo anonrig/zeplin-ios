@@ -20,6 +20,16 @@ final class ScreenViewController: UIViewController, ios_toolkit.View, ErrorDispl
     private(set) var completionObservable = PublishSubject<Void>()
     private(set) var loadingView: LoadingView
     
+    var statusBarHidden = true {
+      didSet(newValue) {
+        setNeedsStatusBarAppearanceUpdate()
+      }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+      return statusBarHidden
+    }
+    
     // MARK: - Initialization
     init(with screen: Screen) {
         bag = DisposeBag()
@@ -93,6 +103,8 @@ private extension ScreenViewController {
             .drive(onNext: { _ in
                 guard let navbar = self.navigationController?.navigationBar else { return }
                 self.navigationController?.setNavigationBarHidden(!navbar.isHidden, animated: true)
+                
+                self.statusBarHidden = !navbar.isHidden
             })
             .disposed(by: bag)
         
