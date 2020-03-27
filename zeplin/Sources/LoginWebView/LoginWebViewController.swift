@@ -54,8 +54,15 @@ final class LoginWebViewController: UIViewController, View, ErrorDisplayer, Load
         super.viewDidLoad()
         
         navigationItem.titleView = UIImageView(image: UIImage(named: "logoZeplin"))
+        
+        // set fake user agent
+        let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36"
+        viewSource.webView.customUserAgent = userAgent
+        
         let url = URL(string: "https://api.zeplin.dev/v1/oauth/authorize?response_type=code&client_id=5e55244862025d78ef97b512&redirect_uri=https://api.relevantfruit.com/v1/zeplin/callback&state=login")!
-        viewSource.webView.load(URLRequest(url: url))
+    
+        let urlRequest = URLRequest(url: url)
+        viewSource.webView.load(urlRequest)
     }
 
 }
