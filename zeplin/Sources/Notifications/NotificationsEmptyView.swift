@@ -8,7 +8,7 @@
 
 import SnapKit
 import UIKit
-import ios_toolkit
+import Toolkit
 
 final class NotificationsEmptyView: UIView {
     // MARK: - Properties

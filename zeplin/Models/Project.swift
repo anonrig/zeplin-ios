@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ObjectMapper
+import Mapper
 import Foundation
 import RxDataSources
 
@@ -19,45 +19,41 @@ struct Project: Mappable, IdentifiableType, Equatable {
     }
     
     var identity: Identity {
-        return (id ?? "0").hashValue
+        return id.hashValue
     }
     
-    var id: String?
-    var name: String?
-    var description: String?
-    var platform: Platform?
-    var thumbnail: String?
-    var status: ProjectStatus?
-    var scene_url: String?
-    var created: Date?
-    var updated: Date?
-    var number_of_members: Int?
-    var number_of_screens: Int?
-    var number_of_components: Int?
-    var number_of_text_styles: Int?
-    var number_of_colors: Int?
-    var members: [Member] = []
+    let id: String
+    let name: String?
+    let description: String?
+    let platform: Platform?
+    let thumbnail: String?
+    let status: ProjectStatus?
+    let scene_url: String?
+    let created: Date?
+    let updated: Date?
+    let number_of_members: Int?
+    let number_of_screens: Int?
+    let number_of_components: Int?
+    let number_of_text_styles: Int?
+    let number_of_colors: Int?
+    let members: [Member]
     
-    init?(map: Map) {}
-    
-    init() {}
-    
-    mutating func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        description <- map["description"]
-        platform <- map["platform"]
-        thumbnail <- map["thumbnail"]
-        status <- map["status"]
-        scene_url <- map["scene_url"]
-        created <- (map["created"], DateTransform())
-        updated <- (map["updated"], DateTransform())
-        number_of_members <- map["number_of_members"]
-        number_of_screens <- map["number_of_screens"]
-        number_of_components <- map["number_of_components"]
-        number_of_text_styles <- map["number_of_text_styles"]
-        number_of_colors <- map["number_of_colors"]
-        members <- map["members"]
+    init(map: Mapper) throws {
+        try id = map.from("id")
+        name = map.optionalFrom("name")
+        description = map.optionalFrom("description")
+        platform = map.optionalFrom("platform")
+        thumbnail = map.optionalFrom("thumbnail")
+        status = map.optionalFrom("status")
+        scene_url = map.optionalFrom("scene_url")
+        created = map.optionalFrom("created")
+        updated = map.optionalFrom("updated")
+        number_of_members = map.optionalFrom("number_of_members")
+        number_of_screens = map.optionalFrom("number_of_screens")
+        number_of_components = map.optionalFrom("number_of_components")
+        number_of_text_styles = map.optionalFrom("number_of_text_styles")
+        number_of_colors = map.optionalFrom("number_of_colors")
+        members = map.optionalFrom("members") ?? []
     }
 }
 

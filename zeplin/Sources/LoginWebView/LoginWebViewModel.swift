@@ -8,7 +8,7 @@
 
 import RxSwift
 import RxCocoa
-import ios_toolkit
+import Toolkit
 
 final class LoginWebViewModel: ViewModel, RemoteLoading, ErrorHandler {
     // MARK: - Properties

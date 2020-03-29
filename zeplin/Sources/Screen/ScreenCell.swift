@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import ios_toolkit
+import Toolkit
 
 final class ScreenCell: UICollectionViewCell {
     private var imageView: UIImageView = {

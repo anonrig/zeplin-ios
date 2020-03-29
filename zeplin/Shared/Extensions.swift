@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import WebKit
 import RxSwift
+import Mapper
 
 var appVersion: String {
     guard let dictionary = Bundle.main.infoDictionary,
@@ -102,4 +103,14 @@ extension Observable where Element: OptionalType {
       value.optional.map { Observable<Element.Wrapped>.just($0) } ?? Observable<Element.Wrapped>.empty()
     }
   }
+}
+
+extension Date: Convertible {
+    public static func fromMap(_ value: Any) throws -> Date {
+        if let interval = value as? TimeInterval {
+            return Date(timeIntervalSince1970: interval)
+        }
+
+        throw MapperError.convertibleError(value: value, type: String.self)
+    }
 }

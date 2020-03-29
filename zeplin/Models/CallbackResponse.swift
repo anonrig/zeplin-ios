@@ -7,18 +7,14 @@
 //
 
 import UIKit
-import ObjectMapper
+import Mapper
 
 struct CallbackResponse: Mappable {
-    var user: User?
-    var token: String?
+    let user: User
+    let token: String
     
-    init?(map: Map) {}
-    
-    init() {}
-    
-    mutating func mapping(map: Map) {
-        user <- map["user"]
-        token <- map["token"]
+    init(map: Mapper) throws {
+        try user = map.from("user")
+        try token = map.from("token")
     }
 }

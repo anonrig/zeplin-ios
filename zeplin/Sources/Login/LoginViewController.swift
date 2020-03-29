@@ -1,7 +1,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ios_toolkit
+import Toolkit
 
 final class LoginViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties

@@ -1,6 +1,6 @@
 import RxSwift
 import RxCocoa
-import ios_toolkit
+import Toolkit
 
 final class SplashViewModel: ViewModel, RemoteLoading, ErrorHandler {
     // MARK: - Properties

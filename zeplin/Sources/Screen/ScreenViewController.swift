@@ -8,10 +8,10 @@
 
 import UIKit
 import RxSwift
-import ios_toolkit
+import Toolkit
 import Kingfisher
 
-final class ScreenViewController: UIViewController, ios_toolkit.View, ErrorDisplayer, LoadingHandler {
+final class ScreenViewController: UIViewController, Toolkit.View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties
     private lazy var viewSource = ScreenView()
     

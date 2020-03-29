@@ -10,10 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import ios_toolkit
+import Toolkit
 import Kingfisher
 
-final class ProjectViewController: UIViewController, ios_toolkit.View, ErrorDisplayer, LoadingHandler {
+final class ProjectViewController: UIViewController, Toolkit.View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties
     private lazy var viewSource = ProjectView()
     
@@ -65,7 +65,7 @@ extension ProjectViewController: ProjectNavigator {
         }, configureSupplementaryView: { datasource, collectionView, kind, indexPath in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: "ScreenSectionHeaderView", withClass: ScreenSectionHeaderView.self, for: indexPath)
             let model = self.viewModel.sections.value[indexPath.section]
-            header.populate(with: model.name!)
+            header.populate(with: model.name)
             
             header.isCollapsed.accept(model.isCollapsed)
             

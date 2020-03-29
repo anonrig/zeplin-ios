@@ -6,28 +6,23 @@
 //  Copyright © 2020 Yagiz Nizipli. All rights reserved.
 //
 
-import RxSwift
-import RxCocoa
-import RxDataSources
 import UIKit
-import ObjectMapper
+import Mapper
+import RxDataSources
 
 struct ScreenSection: Mappable {
-    var id: String?
-    var name: String?
-    var identity: String = ""
-    var screens: [Item] = []
-    var isCollapsed: Bool = false
+    let id: String
+    let name: String
+    let identity: String
+    var screens: [Item]
+    var isCollapsed: Bool
     
-    init?(map: Map) {}
-    
-    init() {}
-    
-    mutating func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        identity = id ?? ""
-        screens <- map["screens"]
+    init(map: Mapper) throws {
+        try id = map.from("id")
+        try name = map.from("name")
+        try identity = map.from("identity")
+        screens = map.optionalFrom("screens") ?? []
+        isCollapsed = map.optionalFrom("isCollapsed") ?? false
     }
 }
 

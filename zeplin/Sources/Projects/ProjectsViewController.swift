@@ -2,7 +2,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import ios_toolkit
+import Toolkit
+import OneSignal
 
 final class ProjectsViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties
@@ -45,6 +46,8 @@ final class ProjectsViewController: UIViewController, View, ErrorDisplayer, Load
         
         definesPresentationContext = true
         navigationItem.searchController = viewModel.searchController
+        
+        OneSignal.promptForPushNotifications(userResponse: { _ in })
     }
 }
 

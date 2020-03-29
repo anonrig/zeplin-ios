@@ -7,21 +7,17 @@
 //
 
 import UIKit
-import ObjectMapper
+import Mapper
 
 struct Section: Mappable {
-    var id: String?
-    var name: String?
-    var created: Date?
+    let id: String
+    let name: String
+    let created: Date
     
-    init?(map: Map) {}
-    
-    init() {}
-    
-    mutating func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        created <- (map["created"], DateTransform())
+    init(map: Mapper) throws {
+        try id = map.from("id")
+        try name = map.from("name")
+        try created = map.from("created")
     }
 }
 

@@ -8,7 +8,7 @@
 
 import RxSwift
 import RxCocoa
-import ios_toolkit
+import Toolkit
 
 final class ScreenViewModel: ViewModel, RemoteLoading, ErrorHandler {
     // MARK: - Properties

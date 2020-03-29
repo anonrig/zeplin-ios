@@ -8,7 +8,7 @@
 
 import SnapKit
 import UIKit
-import ios_toolkit
+import Toolkit
 import WebKit
 
 final class LoginWebView: UIView {

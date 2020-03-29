@@ -6,22 +6,18 @@
 //  Copyright © 2020 Yagiz Nizipli. All rights reserved.
 //
 
-import UIKit
-import ObjectMapper
+import Foundation
+import Mapper
 
 struct Member: Mappable {
-    var user: User?
-    var role: String?
-    var restricted: Bool = false
+    let user: User
+    let role: String
+    let restricted: Bool?
     
-    init?(map: Map) {}
-    
-    init() {}
-    
-    mutating func mapping(map: Map) {
-        user <- map["user"]
-        role <- map["role"]
-        restricted <- map["restricted"]
+    init(map: Mapper) throws {
+        try user = map.from("user")
+        try role = map.from("role")
+        restricted = map.optionalFrom("restricted") ?? false
     }
 }
 
