@@ -1,6 +1,6 @@
 import UIKit
 import RxSwift
-import ios_toolkit
+import Toolkit
 
 final class SplashViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties

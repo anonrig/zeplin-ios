@@ -9,8 +9,9 @@
 import RxSwift
 import SnapKit
 import UIKit
-import ios_toolkit
+import Toolkit
 import WebKit
+import Mapper
 
 final class LoginWebViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties
@@ -81,8 +82,12 @@ extension LoginWebViewController: WKNavigationDelegate {
             if path.contains("/v1/zeplin") {
                 webView
                     .evaluateJavaScript("document.documentElement.querySelector('pre').innerHTML.toString()", completionHandler: { (html: Any?, error: Error?) in
-                        if let response = html as? String {
-                            self.completionObservable.onNext(CallbackResponse(JSONString: response))
+                        if let response = html as? String,
+                            let data = response.data(using: .utf8),
+                            let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
+                            let callbackResponse = try? CallbackResponse(map: Mapper(JSON: dictionary)) {
+                           
+                            self.completionObservable.onNext(callbackResponse)
                         } else {
                             self.completionObservable.onNext(nil)
                         }

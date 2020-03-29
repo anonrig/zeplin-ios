@@ -7,24 +7,30 @@
 //
 
 import UIKit
-import ObjectMapper
+import Mapper
 
 struct User: Mappable {
-    var identifier: String?
-    var email: String?
-    var username: String?
-    var emotar: String?
-    var avatar: String?
+    let identifier: String
+    let email: String
+    let username: String
+    let emotar: String?
+    let avatar: String?
     
-    init?(map: Map) {}
-    
-    init() {}
-    
-    mutating func mapping(map: Map) {
-        identifier <- map["identifier"]
-        email <- map["email"]
-        username <- map["username"]
-        emotar <- map["emotar"]
-        avatar <- map["avatar"]
+    init(map: Mapper) throws {
+        try identifier = map.from("identifier")
+        try email = map.from("email")
+        try username = map.from("username")
+        emotar = map.optionalFrom("emotar")
+        avatar = map.optionalFrom("avatar")
+    }
+}
+
+// MARK: - Helper functions
+extension User {
+    func getPrefix(maxLength: Int = 2, isUppercased: Bool = true) -> String {
+        if isUppercased {
+            return username.prefix(maxLength).uppercased()
+        }
+        return String(username.prefix(maxLength))
     }
 }

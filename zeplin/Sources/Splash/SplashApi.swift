@@ -1,9 +1,7 @@
 import RxSwift
 import RxCocoa
-import RxAlamofire
-import ObjectMapper
 import Kingfisher
-import ios_toolkit
+import Toolkit
 
 protocol SplashApi {}
 

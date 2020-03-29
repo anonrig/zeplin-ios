@@ -1,6 +1,6 @@
 import RxSwift
 import RxCocoa
-import ios_toolkit
+import Toolkit
 import UIKit
 
 final class ProjectsViewModel: ViewModel, RemoteLoading, ErrorHandler {

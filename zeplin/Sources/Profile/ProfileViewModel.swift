@@ -7,7 +7,7 @@
 //
 
 import RxCocoa
-import ios_toolkit
+import Toolkit
 import RxSwift
 
 final class ProfileViewModel: ViewModel, RemoteLoading, ErrorHandler {

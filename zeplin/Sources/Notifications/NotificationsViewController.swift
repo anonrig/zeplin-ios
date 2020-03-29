@@ -8,7 +8,7 @@
 
 import UIKit
 import RxSwift
-import ios_toolkit
+import Toolkit
 
 final class NotificationsViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
     // MARK: - Properties

@@ -1,7 +1,8 @@
 import UIKit
 import RxSwift
 import SwifterSwift
-import ios_toolkit
+import Toolkit
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,6 +44,9 @@ extension AppDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = splashWindow
+        
+        let onesignalSettings = [kOSSettingsKeyAutoPrompt: false]
+        OneSignal.initWithLaunchOptions(onesignalSettings, appId: "3b3075a1-b7b0-4f9a-a72c-2856fa865ca4")
         return true
     }
 }

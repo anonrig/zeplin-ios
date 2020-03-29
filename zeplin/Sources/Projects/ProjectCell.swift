@@ -90,7 +90,8 @@ extension ProjectCell {
         }
         
         for n in 0...4 {
-            if let member = project.members.at(index: n), let user = member.user {
+            if let member = project.members.at(index: n) {
+                let user = member.user
                 if let avatar = user.avatar, let url = URL(string: avatar) {
                     let imageView = UIImageView()
                     imageView.kf.setImage(with: url)
@@ -108,7 +109,7 @@ extension ProjectCell {
                     memberStack.addArrangedSubview(label)
                 } else {
                     let label = UILabel()
-                    label.text = (user.username ?? "").prefix(2).uppercased()
+                    label.text = user.getPrefix()
                     label.backgroundColor = .black
                     label.font = .semiBold(8)
                     label.textAlignment = .center

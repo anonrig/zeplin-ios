@@ -12,8 +12,8 @@ import RxDataSources
 import UIKit
 
 struct ProjectsSection {
-    var header: String
-    var status: ProjectStatus
+    let header: String
+    let status: ProjectStatus
     var projects: [Project]
     var isCollapsed: Bool = false
 }

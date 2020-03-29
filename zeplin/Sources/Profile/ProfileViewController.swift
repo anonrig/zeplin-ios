@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ios_toolkit
+import Toolkit
 import MessageUI
 import SafariServices
 

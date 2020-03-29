@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		243F4D298C9460566B574229 /* Pods_NotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080E7B37BD0305CAB9A7E174 /* Pods_NotificationService.framework */; };
 		953C0722240E99620071842A /* ProjectsArchivedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C0721240E99620071842A /* ProjectsArchivedHeaderView.swift */; };
-		953C0728240EA1ED0071842A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 953C0727240EA1ED0071842A /* RxSwift */; };
-		953C072A240EA1ED0071842A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 953C0729240EA1ED0071842A /* RxCocoa */; };
 		953C072C240F85BA0071842A /* loading-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 953C072B240F85BA0071842A /* loading-animation.json */; };
 		953C072E240F8A5C0071842A /* ScreenSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C072D240F8A5C0071842A /* ScreenSection.swift */; };
 		953C0730240FAB120071842A /* ScreenSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C072F240FAB120071842A /* ScreenSectionHeaderView.swift */; };
@@ -21,7 +20,6 @@
 		955B8551240A858000239894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8550240A858000239894 /* AppDelegate.swift */; };
 		955B855A240A858200239894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 955B8559240A858200239894 /* Assets.xcassets */; };
 		955B855D240A858200239894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955B855B240A858200239894 /* LaunchScreen.storyboard */; };
-		955B8566240A863D00239894 /* ios-toolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 955B8565240A863D00239894 /* ios-toolkit */; };
 		955B8568240A867500239894 /* AppInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8567240A867500239894 /* AppInit.swift */; };
 		955B857E240A86BE00239894 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8573240A86BE00239894 /* SplashViewController.swift */; };
 		955B857F240A86BE00239894 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8574240A86BE00239894 /* SplashViewModel.swift */; };
@@ -42,6 +40,10 @@
 		955B85A7240AC6DB00239894 /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B85A6240AC6DB00239894 /* LoginNavigator.swift */; };
 		955B85AA240AC73F00239894 /* LoginWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B85A9240AC73F00239894 /* LoginWebView.swift */; };
 		955B85AC240AC75400239894 /* LoginWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B85AB240AC75400239894 /* LoginWebViewModel.swift */; };
+		9566E2582431029F00BF78AC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566E2572431029F00BF78AC /* NotificationService.swift */; };
+		9566E25C2431029F00BF78AC /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9566E2552431029F00BF78AC /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9566E26E2431136E00BF78AC /* Toolkit in Frameworks */ = {isa = PBXBuildFile; productRef = 9566E26D2431136E00BF78AC /* Toolkit */; };
+		9566E2722431192400BF78AC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566E2712431192400BF78AC /* NetworkService.swift */; };
 		95AAE0FE240ADE4100A2001A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE0FD240ADE4100A2001A /* User.swift */; };
 		95AAE100240ADE8F00A2001A /* CallbackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE0FF240ADE8F00A2001A /* CallbackResponse.swift */; };
 		95AAE102240AF43900A2001A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE101240AF43900A2001A /* Project.swift */; };
@@ -72,9 +74,40 @@
 		95E30DAB240E7E600086A36D /* ProjectsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E30DAA240E7E600086A36D /* ProjectsSection.swift */; };
 		999F72DC24123F7700BD539F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 999F72DB24123F7700BD539F /* Colors.xcassets */; };
 		999F72DF24123FE800BD539F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999F72DE24123FE800BD539F /* Colors.swift */; };
+		D39691038E204A0BD2C8DC46 /* Pods_zeplin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DA18B879EA9930587ED778 /* Pods_zeplin.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9566E25A2431029F00BF78AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 955B8545240A858000239894 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9566E2542431029F00BF78AC;
+			remoteInfo = NotificationService;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9566E25D2431029F00BF78AC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9566E25C2431029F00BF78AC /* NotificationService.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		080E7B37BD0305CAB9A7E174 /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44BFB4149AB948228E55BE0C /* Pods-zeplin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zeplin.debug.xcconfig"; path = "Target Support Files/Pods-zeplin/Pods-zeplin.debug.xcconfig"; sourceTree = "<group>"; };
+		56DA18B879EA9930587ED778 /* Pods_zeplin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zeplin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60B1683C46DBFA6BA8290F1A /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
+		7020DC1D485FC491DC670291 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.debug.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
+		78324987ADF4751DAC07532E /* Pods-zeplin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zeplin.release.xcconfig"; path = "Target Support Files/Pods-zeplin/Pods-zeplin.release.xcconfig"; sourceTree = "<group>"; };
 		953C0721240E99620071842A /* ProjectsArchivedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsArchivedHeaderView.swift; sourceTree = "<group>"; };
 		953C072B240F85BA0071842A /* loading-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-animation.json"; sourceTree = "<group>"; };
 		953C072D240F8A5C0071842A /* ScreenSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSection.swift; sourceTree = "<group>"; };
@@ -108,6 +141,12 @@
 		955B85A6240AC6DB00239894 /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
 		955B85A9240AC73F00239894 /* LoginWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebView.swift; sourceTree = "<group>"; };
 		955B85AB240AC75400239894 /* LoginWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewModel.swift; sourceTree = "<group>"; };
+		9566E2552431029F00BF78AC /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9566E2572431029F00BF78AC /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		9566E2592431029F00BF78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9566E262243103B800BF78AC /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = Carthage/Build/iOS/OneSignal.framework; sourceTree = "<group>"; };
+		9566E26B2431051600BF78AC /* Zeplin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Zeplin.entitlements; sourceTree = "<group>"; };
+		9566E2712431192400BF78AC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		95AAE0FD240ADE4100A2001A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		95AAE0FF240ADE8F00A2001A /* CallbackResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackResponse.swift; sourceTree = "<group>"; };
 		95AAE101240AF43900A2001A /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -145,21 +184,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				95E30DA9240E7DED0086A36D /* RxDataSources in Frameworks */,
+				9566E26E2431136E00BF78AC /* Toolkit in Frameworks */,
 				955B859A240A880C00239894 /* Kingfisher in Frameworks */,
-				953C072A240EA1ED0071842A /* RxCocoa in Frameworks */,
-				953C0728240EA1ED0071842A /* RxSwift in Frameworks */,
-				955B8566240A863D00239894 /* ios-toolkit in Frameworks */,
+				D39691038E204A0BD2C8DC46 /* Pods_zeplin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9566E2522431029F00BF78AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				243F4D298C9460566B574229 /* Pods_NotificationService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6DA63BEB96F351ABC83CB89F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7020DC1D485FC491DC670291 /* Pods-NotificationService.debug.xcconfig */,
+				60B1683C46DBFA6BA8290F1A /* Pods-NotificationService.release.xcconfig */,
+				44BFB4149AB948228E55BE0C /* Pods-zeplin.debug.xcconfig */,
+				78324987ADF4751DAC07532E /* Pods-zeplin.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		955B8544240A858000239894 = {
 			isa = PBXGroup;
 			children = (
 				955B854F240A858000239894 /* zeplin */,
+				9566E2562431029F00BF78AC /* NotificationService */,
 				955B854E240A858000239894 /* Products */,
+				9566E261243103B800BF78AC /* Frameworks */,
+				6DA63BEB96F351ABC83CB89F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				955B854D240A858000239894 /* Zeplin.app */,
+				9566E2552431029F00BF78AC /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +235,7 @@
 		955B854F240A858000239894 /* zeplin */ = {
 			isa = PBXGroup;
 			children = (
+				9566E26B2431051600BF78AC /* Zeplin.entitlements */,
 				999F72DD24123FD700BD539F /* Helpers */,
 				999F72DA24123F6400BD539F /* Resources */,
 				95AAE0FC240ADE3200A2001A /* Models */,
@@ -232,6 +294,7 @@
 				955B858F240A874800239894 /* Navigator.swift */,
 				955B858B240A874800239894 /* NetworkProvider.swift */,
 				95C5F3E32411AE4500061174 /* RxKingfisher.swift */,
+				9566E2712431192400BF78AC /* NetworkService.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -259,6 +322,25 @@
 				955B85AB240AC75400239894 /* LoginWebViewModel.swift */,
 			);
 			path = LoginWebView;
+			sourceTree = "<group>";
+		};
+		9566E2562431029F00BF78AC /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				9566E2572431029F00BF78AC /* NotificationService.swift */,
+				9566E2592431029F00BF78AC /* Info.plist */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
+		9566E261243103B800BF78AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9566E262243103B800BF78AC /* OneSignal.framework */,
+				080E7B37BD0305CAB9A7E174 /* Pods_NotificationService.framework */,
+				56DA18B879EA9930587ED778 /* Pods_zeplin.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		95AAE0FC240ADE3200A2001A /* Models */ = {
@@ -350,25 +432,44 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 955B8561240A858200239894 /* Build configuration list for PBXNativeTarget "zeplin" */;
 			buildPhases = (
+				63FCE1F43BB08181CBDBB8BC /* [CP] Check Pods Manifest.lock */,
 				955B8549240A858000239894 /* Sources */,
 				955B854A240A858000239894 /* Frameworks */,
 				955B854B240A858000239894 /* Resources */,
+				9566E25D2431029F00BF78AC /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9566E25B2431029F00BF78AC /* PBXTargetDependency */,
+			);
+			name = zeplin;
+			packageProductDependencies = (
+				955B8599240A880C00239894 /* Kingfisher */,
+				95E30DA8240E7DED0086A36D /* RxDataSources */,
+				9566E26D2431136E00BF78AC /* Toolkit */,
+			);
+			productName = zeplin;
+			productReference = 955B854D240A858000239894 /* Zeplin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9566E2542431029F00BF78AC /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9566E2602431029F00BF78AC /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				6EA56218EE8A32FE9276416D /* [CP] Check Pods Manifest.lock */,
+				9566E2512431029F00BF78AC /* Sources */,
+				9566E2522431029F00BF78AC /* Frameworks */,
+				9566E2532431029F00BF78AC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = zeplin;
-			packageProductDependencies = (
-				955B8565240A863D00239894 /* ios-toolkit */,
-				955B8599240A880C00239894 /* Kingfisher */,
-				95E30DA8240E7DED0086A36D /* RxDataSources */,
-				953C0727240EA1ED0071842A /* RxSwift */,
-				953C0729240EA1ED0071842A /* RxCocoa */,
-			);
-			productName = zeplin;
-			productReference = 955B854D240A858000239894 /* Zeplin.app */;
-			productType = "com.apple.product-type.application";
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 9566E2552431029F00BF78AC /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -376,12 +477,15 @@
 		955B8545240A858000239894 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Yagiz Nizipli";
 				TargetAttributes = {
 					955B854C240A858000239894 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					9566E2542431029F00BF78AC = {
+						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
@@ -395,16 +499,16 @@
 			);
 			mainGroup = 955B8544240A858000239894;
 			packageReferences = (
-				955B8564240A863D00239894 /* XCRemoteSwiftPackageReference "ios-toolkit" */,
 				955B8598240A880C00239894 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				95E30DA7240E7DED0086A36D /* XCRemoteSwiftPackageReference "RxDataSources" */,
-				953C0726240EA1ED0071842A /* XCRemoteSwiftPackageReference "RxSwift" */,
+				9566E26C2431136E00BF78AC /* XCRemoteSwiftPackageReference "toolkit" */,
 			);
 			productRefGroup = 955B854E240A858000239894 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				955B854C240A858000239894 /* zeplin */,
+				9566E2542431029F00BF78AC /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -421,7 +525,61 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9566E2532431029F00BF78AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		63FCE1F43BB08181CBDBB8BC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-zeplin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EA56218EE8A32FE9276416D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotificationService-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		955B8549240A858000239894 /* Sources */ = {
@@ -462,6 +620,7 @@
 				95AAE11B240B094E00A2001A /* Section.swift in Sources */,
 				95AAE11D240B0CD600A2001A /* ProjectsNavigator.swift in Sources */,
 				955B859D240A8E6700239894 /* ProjectsView.swift in Sources */,
+				9566E2722431192400BF78AC /* NetworkService.swift in Sources */,
 				95AAE121240B151000A2001A /* ProjectEditBarView.swift in Sources */,
 				955B8584240A86CB00239894 /* LoginView.swift in Sources */,
 				95AAE114240B083900A2001A /* ScreenCell.swift in Sources */,
@@ -487,7 +646,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9566E2512431029F00BF78AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9566E2582431029F00BF78AC /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9566E25B2431029F00BF78AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9566E2542431029F00BF78AC /* NotificationService */;
+			targetProxy = 9566E25A2431029F00BF78AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		955B855B240A858200239894 /* LaunchScreen.storyboard */ = {
@@ -617,11 +792,18 @@
 		};
 		955B8562240A858200239894 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44BFB4149AB948228E55BE0C /* Pods-zeplin.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = zeplin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -638,11 +820,18 @@
 		};
 		955B8563240A858200239894 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78324987ADF4751DAC07532E /* Pods-zeplin.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = zeplin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -652,6 +841,56 @@
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin;
 				PRODUCT_NAME = Zeplin;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		9566E25E2431029F00BF78AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7020DC1D485FC491DC670291 /* Pods-NotificationService.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9566E25F2431029F00BF78AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60B1683C46DBFA6BA8290F1A /* Pods-NotificationService.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -678,31 +917,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		9566E2602431029F00BF78AC /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9566E25E2431029F00BF78AC /* Debug */,
+				9566E25F2431029F00BF78AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		953C0726240EA1ED0071842A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
-			};
-		};
-		955B8564240A863D00239894 /* XCRemoteSwiftPackageReference "ios-toolkit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/notemate/ios-toolkit";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		955B8598240A880C00239894 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.13.2;
+			};
+		};
+		9566E26C2431136E00BF78AC /* XCRemoteSwiftPackageReference "toolkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relevantfruit/toolkit";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		95E30DA7240E7DED0086A36D /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
@@ -716,25 +956,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		953C0727240EA1ED0071842A /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 953C0726240EA1ED0071842A /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-		953C0729240EA1ED0071842A /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 953C0726240EA1ED0071842A /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		955B8565240A863D00239894 /* ios-toolkit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 955B8564240A863D00239894 /* XCRemoteSwiftPackageReference "ios-toolkit" */;
-			productName = "ios-toolkit";
-		};
 		955B8599240A880C00239894 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 955B8598240A880C00239894 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		9566E26D2431136E00BF78AC /* Toolkit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9566E26C2431136E00BF78AC /* XCRemoteSwiftPackageReference "toolkit" */;
+			productName = Toolkit;
 		};
 		95E30DA8240E7DED0086A36D /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -7,21 +7,17 @@
 //
 
 import UIKit
-import ObjectMapper
+import Mapper
 
 struct Image: Mappable {
-    var width: Int = 0
-    var height: Int = 0
-    var original_url: String?
+    let width: Int
+    let height: Int
+    let original_url: String?
     
-    init?(map: Map) {}
-    
-    init() {}
-    
-    mutating func mapping(map: Map) {
-        width <- map["width"]
-        height <- map["height"]
-        original_url <- map["original_url"]
+    init(map: Mapper) throws {
+        try width = map.from("width")
+        try height = map.from("height")
+        original_url = map.optionalFrom("original_url")
     }
 }
 
