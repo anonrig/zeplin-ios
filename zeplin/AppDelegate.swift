@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.makeKeyAndVisible()
             })
             .disposed(by: bag)
-
+        
         window.rootViewController = rootController
-      window.backgroundColor = Colors.windowBackgroundBlack.color
+        window.backgroundColor = Colors.windowBackgroundBlack.color
         window.makeKeyAndVisible()
         return window
     }()
@@ -43,7 +43,6 @@ extension AppDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = splashWindow
-        
         return true
     }
 }
