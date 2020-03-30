@@ -13,20 +13,22 @@ import RxDataSources
 struct ScreenSection: Mappable {
     let id: String
     let name: String
-    let identity: String
     var screens: [Item]
     var isCollapsed: Bool
     
     init(map: Mapper) throws {
         try id = map.from("id")
         try name = map.from("name")
-        try identity = map.from("identity")
         screens = map.optionalFrom("screens") ?? []
         isCollapsed = map.optionalFrom("isCollapsed") ?? false
     }
 }
 
 extension ScreenSection: AnimatableSectionModelType {
+    var identity: String {
+        return id
+    }
+    
     typealias Item = Screen
     typealias Identity = String
     
