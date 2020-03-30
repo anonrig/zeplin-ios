@@ -17,6 +17,8 @@ final class ScreenViewModel: ViewModel, RemoteLoading, ErrorHandler {
     private(set) var onError = BehaviorRelay<ErrorObject?>(value: nil)
     private(set) var screen: BehaviorRelay<Screen>
     private(set) var isOriginalMode = BehaviorRelay<Bool>(value: true)
+    private(set) var statusBarHidden = BehaviorRelay<Bool>(value: false)
+
     
     init(with currentScreen: Screen) {
         screen = BehaviorRelay<Screen>(value: currentScreen)
@@ -24,3 +26,9 @@ final class ScreenViewModel: ViewModel, RemoteLoading, ErrorHandler {
     }
 }
 
+// MARK: - Helpers
+extension ScreenViewModel {
+    func toggleStatusBar() {
+        statusBarHidden.accept(!statusBarHidden.value)
+    }
+}
