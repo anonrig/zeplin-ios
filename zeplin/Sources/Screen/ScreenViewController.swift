@@ -20,6 +20,10 @@ final class ScreenViewController: UIViewController, Toolkit.View, ErrorDisplayer
     private(set) var completionObservable = PublishSubject<Void>()
     private(set) var loadingView: LoadingView
     
+    override var prefersStatusBarHidden: Bool {
+        return viewModel.statusBarHidden.value
+    }
+    
     // MARK: - Initialization
     init(with screen: Screen) {
         bag = DisposeBag()
@@ -65,6 +69,14 @@ final class ScreenViewController: UIViewController, Toolkit.View, ErrorDisplayer
 // MARK: - Observe Datasource
 private extension ScreenViewController {
     private func observeDatasource() {
+        viewModel.statusBarHidden
+            .asDriver()
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] _ in
+                self?.setNeedsStatusBarAppearanceUpdate()
+            })
+            .disposed(by: viewModel.bag)
+
         viewSource.imageScrollView.rx.setDelegate(self)
             .disposed(by: viewSource.bag)
 
@@ -93,6 +105,7 @@ private extension ScreenViewController {
             .drive(onNext: { _ in
                 guard let navbar = self.navigationController?.navigationBar else { return }
                 self.navigationController?.setNavigationBarHidden(!navbar.isHidden, animated: true)
+                self.viewModel.toggleStatusBar()
             })
             .disposed(by: bag)
         
