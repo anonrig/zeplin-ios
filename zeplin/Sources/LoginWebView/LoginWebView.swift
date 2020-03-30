@@ -13,7 +13,13 @@ import WebKit
 
 final class LoginWebView: UIView {
     // MARK: - Properties
-    private(set) var webView: WKWebView = WKWebView()
+    private(set) var webViewConfig: WKWebViewConfiguration = {
+        let config = WKWebViewConfiguration()
+        config.applicationNameForUserAgent = "Version/8.0.2 Safari/600.2.5"
+        return config
+    }()
+    
+    private(set) lazy var webView: WKWebView = WKWebView(frame: .zero, configuration: webViewConfig)
     
     // MARK: - Initialization
     init() {
