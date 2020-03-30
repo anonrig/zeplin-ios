@@ -45,19 +45,13 @@ final class LoginWebViewController: UIViewController, View, ErrorDisplayer, Load
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewSource.webView.cleanAllCookies()
-        viewSource.webView.refreshCookies()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.titleView = UIImageView(image: UIImage(named: "logoZeplin"))
         
-        // set fake user agent
-        let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36"
+        // Setting fake user agent is important to enable logging in with Google.
+        let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
         viewSource.webView.customUserAgent = userAgent
         
         let url = URL(string: "https://api.zeplin.dev/v1/oauth/authorize?response_type=code&client_id=5e55244862025d78ef97b512&redirect_uri=https://api.relevantfruit.com/v1/zeplin/callback&state=login")!
@@ -79,6 +73,7 @@ private extension LoginWebViewController {
 extension LoginWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let path = webView.url?.absoluteString {
+            print("path", path)
             if path.contains("/v1/zeplin") {
                 webView
                     .evaluateJavaScript("document.documentElement.querySelector('pre').innerHTML.toString()", completionHandler: { (html: Any?, error: Error?) in
@@ -91,6 +86,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                         } else {
                             self.completionObservable.onNext(nil)
                         }
+                        
                         self.completionObservable.onCompleted()
                     
                 })
