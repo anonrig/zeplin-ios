@@ -34,6 +34,7 @@ final class ProfileViewController: UIViewController, ViewModelBased, LoadableCon
     configureNavBar(with: "Profile".localized(), prefersLargeTitle: false)
     observeDatasource()
     viewModel.getCurrentUser()
+    viewModel.askForRating()
   }
 }
 // MARK: - Observe Datasource

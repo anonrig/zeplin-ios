@@ -31,4 +31,8 @@ final class ProfileViewModel: ServicesViewModel, Stepper {
   func actionRequired(_ action: ProfileSteps) {
     steps.accept(action)
   }
+  
+  func askForRating() {
+    steps.accept(ProfileSteps.rateRequired)
+  }
 }
