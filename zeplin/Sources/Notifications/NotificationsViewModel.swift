@@ -8,15 +8,15 @@
 
 import RxSwift
 import RxCocoa
+import RxFlow
+import UIKit
 import Toolkit
 
-final class NotificationsViewModel: ViewModel, RemoteLoading, ErrorHandler {
-    // MARK: - Properties
-    var bag: DisposeBag
-    private(set) var isLoading = BehaviorRelay<Bool>(value: false)
-    private(set) var onError = BehaviorRelay<ErrorObject?>(value: nil)
-    
-    init() {
-        bag = DisposeBag()
-    }
+final class NotificationsViewModel: ServicesViewModel, Stepper {
+  typealias Services = AppServices
+  
+  // MARK: - Properties
+  var services: Services!
+  let steps = PublishRelay<Step>()
+  let bag = DisposeBag()
 }

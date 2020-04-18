@@ -11,33 +11,33 @@ import UIKit
 import Toolkit
 
 final class NotificationsEmptyView: UIView {
-    // MARK: - Properties
-    private var headerLabel: UILabel = .create(text: "You have no notifications.".localized(), numberOfLines: 0, textAlignment: .left, textColor: .white, font: .bold(22))
+  // MARK: - Properties
+  private let headerLabel: UILabel = .create(text: "You have no notifications.".localized(), numberOfLines: 0, textAlignment: .left, textColor: .white, font: .bold(22))
+  private let imageView: UIImageView = {
+    let view = UIImageView(image: UIImage(named: "imgNotificationEmpty"))
+    view.contentMode = .scaleAspectFill
+    return view
+  }()
+  
+  // MARK: - Initialization
+  init() {
+    super.init(frame: .zero)
     
-    private var imageView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "imgNotificationEmpty"))
-        view.contentMode = .scaleAspectFill
-        return view
-    }()
+    [headerLabel, imageView].forEach(addSubview(_:))
     
-    // MARK: - Initialization
-    init() {
-        super.init(frame: .zero)
-        
-        [headerLabel, imageView].forEach(addSubview(_:))
-        
-        headerLabel.snp.makeConstraints {
-            $0.leading.trailing.top.equalTo(self).inset(UIEdgeInsets(top: 20, left: 24, bottom: 0, right: 24))
-        }
-        
-        imageView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(self)
-            $0.top.equalTo(headerLabel.snp.bottom).offset(24)
-        }
+    headerLabel.snp.makeConstraints {
+      $0.leading.trailing.top
+        .equalTo(self)
+        .inset(UIEdgeInsets(top: 20, left: 24, bottom: 0, right: 24))
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    imageView.snp.makeConstraints {
+      $0.leading.trailing.equalTo(self)
+      $0.top.equalTo(headerLabel.snp.bottom).offset(24)
     }
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }
-

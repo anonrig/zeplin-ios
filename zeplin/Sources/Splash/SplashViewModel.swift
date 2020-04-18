@@ -1,35 +1,36 @@
+//
+//  SplashViewModel.swift
+//  zeplin
+//
+//  Created by yagiz on 4/17/20.
+//  Copyright © 2020 Yagiz Nizipli. All rights reserved.
+//
+
 import RxSwift
 import RxCocoa
+import RxFlow
+import UIKit
 import Toolkit
 
-final class SplashViewModel: ViewModel, RemoteLoading, ErrorHandler {
-    // MARK: - Properties
-    var bag: DisposeBag
-    private(set) var isLoading = BehaviorRelay<Bool>(value: false)
-    private(set) var onError = BehaviorRelay<ErrorObject?>(value: nil)
-    private(set) lazy var dataLoadedObservable = PublishSubject<Void>()
-
-    init() {
-        bag = DisposeBag()
-        
-        fetchData()
-    }
-}
-
-// MARK: - API
-extension SplashViewModel: SplashApi {
-    func retrieveUser(with jwt: String) -> Observable<User> {
-        return NetworkProvider.shared
-            .getCurrentUser()
-            .do(onError: { error in self.onError.accept(self.handleError(error: error)) })
-    }
+final class SplashViewModel: ServicesViewModel, Stepper {
+  typealias Services = AppServices
+  
+  // MARK: - Properties
+  var services: Services!
+  let steps = PublishRelay<Step>()
+  let bag = DisposeBag()
+  
+  func checkLogin() {
+    guard Keychain.has(.token) else { return self.services.onLoad.onNext(()) }
     
-    func fetchData() {
-        return Observable
-            .just(())
-            .flatMap(getAppData)
-            .do(onError: { error in self.onError.accept(self.handleError(error: error)) })
-            .bind(to: dataLoadedObservable)
-            .disposed(by: bag)
-    }
+    services.zeplinServices.getCurrentUser()
+      .do(onNext: {
+        self.services.preferenceServices.user.accept($0)
+        self.services.onLoad.onNext(())
+        self.steps.accept(AppSteps.projectsRequired)
+      }, onError: { _ in self.services.onLoad.onNext(()) })
+      .asObservable()
+      .subscribe()
+      .disposed(by: bag)
+  }
 }

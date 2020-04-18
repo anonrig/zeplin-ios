@@ -10,20 +10,19 @@ import SnapKit
 import UIKit
 
 final class NotificationsView: UIView {
-    // MARK: - Properties
-    private(set) var emptyView = NotificationsEmptyView()
-    private(set) var comingSoonView = NotificationsComingSoonView()
+  // MARK: - Properties
+  private let comingSoonView = NotificationsComingSoonView()
+  
+  // MARK: - Initialization
+  init() {
+    super.init(frame: .zero)
     
-    // MARK: - Initialization
-    init() {
-        super.init(frame: .zero)
-        
-        [comingSoonView].forEach(addSubview(_:))
-        
-        comingSoonView.snp.makeConstraints { $0.edges.equalToSuperview() }
-    }
+    [comingSoonView].forEach(addSubview(_:))
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    comingSoonView.snp.makeConstraints { $0.edges.equalToSuperview() }
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }

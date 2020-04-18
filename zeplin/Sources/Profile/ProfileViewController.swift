@@ -10,88 +10,55 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toolkit
+import ToolkitRxSwift
 import MessageUI
 import SafariServices
 
-final class ProfileViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
-    // MARK: - Properties
-    private lazy var viewSource = ProfileView()
+final class ProfileViewController: UIViewController, ViewModelBased, LoadableController {
+  var LoadingViewType: LoadableView.Type = LoadingView.self
+  
+  // MARK: - Properties
+  let viewSource = ProfileView()
+  var viewModel: ProfileViewModel!
+  let bag = DisposeBag()
+  
+  // MARK: - Life cycle
+  override func loadView() {
+    view = viewSource
+    view.backgroundColor = Colors.windowBackgroundBlack.color
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    private(set) var bag: DisposeBag
-    private(set) var viewModel: ProfileViewModel
-    private(set) var completionObservable = PublishSubject<Void>()
-    private(set) var loadingView: LoadingView
-    private(set) var logoutObservable = PublishSubject<Void>()
-    
-    // MARK: - Initialization
-    init(with onLogout: PublishSubject<Void>) {
-        bag = DisposeBag()
-        viewModel = ProfileViewModel()
-        loadingView = LoadingView()
-        logoutObservable = onLogout
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        bindLoading()
-        bindErrorHandling()
-        observeDatasource()
-    }
-    
-    // MARK: - Life cycle
-    override func loadView() {
-        view = viewSource
-        view.backgroundColor = Colors.windowBackgroundBlack.color
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureNavBar(with: "Profile".localized(), prefersLargeTitle: false)
-    }
+    configureNavBar(with: "Profile".localized(), prefersLargeTitle: false)
+    observeDatasource()
+    viewModel.getCurrentUser()
+  }
 }
-
 // MARK: - Observe Datasource
-extension ProfileViewController: ProfileNavigator {
-    private func observeDatasource() {
-        viewSource.privacyPolicyButton.rx.tap
-            .asDriver()
-            .drive(onNext: { _ in
-                self.showPrivacyPolicy(buttonView: self.viewSource.privacyPolicyButton)
-            })
-            .disposed(by: viewSource.bag)
-        
-        viewSource.contactButton.rx.tap
-            .asDriver()
-            .drive(onNext: self.sendEmail)
-            .disposed(by: viewSource.bag)
-        
-        viewSource.logoutButton.rx.tap
-            .asDriver()
-            .drive(onNext: self.logout)
-            .disposed(by: viewSource.bag)
-        
-        CurrentUser
-            .asObservable()
-            .ignoreNil()
-            .subscribe(onNext: self.viewSource.populate(with:))
-            .disposed(by: viewSource.bag)
-    }
-}
-
-// MARK: - Mail Composer Delegate
-extension ProfileViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - SafariViewController Delegate
-extension ProfileViewController: SFSafariViewControllerDelegate, UIAdaptivePresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .formSheet
-    }
+extension ProfileViewController {
+  private func observeDatasource() {
+    Observable.merge([
+      viewSource.onPrivacyPolicy().asObservable()
+        .map { _ in
+          ProfileSteps.externalPageRequire(url: URL(string: AppConfig.privacyPolicy.value)!)
+        },
+      viewSource.onContact().asObservable()
+        .map { _ in ProfileSteps.contactRequired },
+      viewSource.onLogout().asObservable()
+        .map { _ in ProfileSteps.logoutRequired}
+    ])
+      .asObservable()
+      .observeOn(MainScheduler.instance)
+      .do(onNext: { self.viewModel.actionRequired($0) })
+      .subscribe()
+      .disposed(by: viewSource.bag)
+    
+    viewModel.user
+      .filter { $0 != nil }
+      .map { $0! }
+      .subscribe(onNext: self.viewSource.populate(with:))
+      .disposed(by: viewSource.bag)
+  }
 }

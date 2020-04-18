@@ -1,45 +1,31 @@
+//
+//  SplashViewController.swift
+//  zeplin
+//
+//  Created by yagiz on 4/17/20.
+//  Copyright © 2020 Yagiz Nizipli. All rights reserved.
+//
+
 import UIKit
 import RxSwift
 import Toolkit
+import ToolkitRxSwift
 
-final class SplashViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
-    // MARK: - Properties
-    private lazy var viewSource = SplashView()
-    
-    private(set) var bag: DisposeBag
-    private(set) var viewModel: SplashViewModel
-    private(set) var completionObservable = PublishSubject<Void>()
-    private(set) var loadingView: LoadingView
-    
-    // MARK: - Initialization
-    init() {
-        bag = DisposeBag()
-        viewModel = SplashViewModel()
-        loadingView = LoadingView()
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        bindLoading()
-        bindErrorHandling()
-        observeDatasource()
-    }
-    
-    // MARK: - Life cycle
-    override func loadView() {
-        view = viewSource
-        view.backgroundColor = Colors.windowBackgroundBlack.color
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+final class SplashViewController: UIViewController, ViewModelBased {
+  
+  // MARK: - Properties
+  var viewModel: SplashViewModel!
+  let viewSource = SplashView()
+  let bag = DisposeBag()
 
-// MARK: - Observe Datasource
-private extension SplashViewController {
-    private func observeDatasource() {
-        viewModel.dataLoadedObservable
-            .bind(to: completionObservable)
-            .disposed(by: viewModel.bag)
-    }
+  // MARK: - Life cycle
+  override func loadView() {
+    view = viewSource
+    view.backgroundColor = Colors.windowBackgroundBlack.color
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    viewModel.checkLogin()
+  }
 }

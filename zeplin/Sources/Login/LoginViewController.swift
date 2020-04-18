@@ -2,48 +2,35 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toolkit
+import ToolkitRxSwift
 
-final class LoginViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
-    // MARK: - Properties
-    private lazy var viewSource = LoginView()
-    
-    private(set) var bag: DisposeBag
-    private(set) var viewModel: LoginViewModel
-    private(set) var completionObservable = PublishSubject<Void>()
-    private(set) var loadingView: LoadingView
-    
-    // MARK: - Initialization
-    init() {
-        bag = DisposeBag()
-        viewModel = LoginViewModel()
-        loadingView = LoadingView()
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        bindLoading()
-        bindErrorHandling()
-        observeDatasource()
-    }
-    
-    // MARK: - Life cycle
-    override func loadView() {
-        view = viewSource
-        view.backgroundColor = Colors.windowBackgroundBlack.color
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+final class LoginViewController: UIViewController, ViewModelBased, LoadableController {
+  //MARK: - Properties
+  var LoadingViewType: LoadableView.Type = LoadingView.self
+  
+  var viewModel: LoginViewModel!
+  let viewSource = LoginView()
+  let bag = DisposeBag()
+  
+  // MARK: - Life cycle
+  override func loadView() {
+    view = viewSource
+    view.backgroundColor = Colors.windowBackgroundBlack.color
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    observeDatasource()
+  }
 }
 
 // MARK: - Observe Datasource
-extension LoginViewController: LoginNavigator {
-    private func observeDatasource() {
-        viewSource.loginButton.rx.tap
-            .asDriver()
-            .drive(onNext: { _ in
-                self.openLogin()
-            })
-            .disposed(by: viewSource.bag)
-    }
+extension LoginViewController {
+  private func observeDatasource() {
+    viewSource.onLogin()
+      .asDriver()
+      .do(onNext: { _ in self.viewModel.webLoginRequired() })
+      .drive()
+      .disposed(by: viewSource.bag)
+  }
 }

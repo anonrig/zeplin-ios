@@ -9,48 +9,25 @@
 import UIKit
 import RxSwift
 import Toolkit
+import ToolkitRxSwift
 
-final class NotificationsViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
-    // MARK: - Properties
-    private lazy var viewSource = NotificationsView()
+final class NotificationsViewController: UIViewController, ViewModelBased, LoadableController {
+  var LoadingViewType: LoadableView.Type = LoadingView.self
+  
+  // MARK: - Properties
+  let viewSource = NotificationsView()
+  var viewModel: NotificationsViewModel!
+  let bag = DisposeBag()
+  
+  // MARK: - Life cycle
+  override func loadView() {
+    view = viewSource
+    view.backgroundColor = Colors.windowBackgroundBlack.color
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    private(set) var bag: DisposeBag
-    private(set) var viewModel: NotificationsViewModel
-    private(set) var loadingView: LoadingView
-    
-    // MARK: - Initialization
-    init() {
-        bag = DisposeBag()
-        viewModel = NotificationsViewModel()
-        loadingView = LoadingView()
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        bindLoading()
-        bindErrorHandling()
-        observeDatasource()
-    }
-    
-    // MARK: - Life cycle
-    override func loadView() {
-        view = viewSource
-        view.backgroundColor = Colors.windowBackgroundBlack.color
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureNavBar(with: "Notifications".localized(), prefersLargeTitle: false)
-    }
-}
-
-// MARK: - Observe Datasource
-private extension NotificationsViewController {
-    private func observeDatasource() {
-
-    }
+    configureNavBar(with: "Notifications".localized(), prefersLargeTitle: false)
+  }
 }

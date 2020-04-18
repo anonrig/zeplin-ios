@@ -13,84 +13,71 @@ import Toolkit
 import WebKit
 import Mapper
 
-final class LoginWebViewController: UIViewController, View, ErrorDisplayer, LoadingHandler {
-    // MARK: - Properties
-    private lazy var viewSource = LoginWebView()
+final class LoginWebViewController: UIViewController, ViewModelBased {
+  
+  // MARK: - Properties
+  var viewModel: LoginWebViewModel!
+  let viewSource = LoginWebView()
+  let bag = DisposeBag()
+  
+  // MARK: - Life cycle
+  override func loadView() {
+    view = viewSource
+    view.backgroundColor = .white
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    private(set) var bag: DisposeBag
-    private(set) var viewModel: LoginWebViewModel
-    private(set) var completionObservable = PublishSubject<CallbackResponse?>()
-    private(set) var loadingView: LoadingView
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: viewSource.closeButton)
+    navigationItem.titleView = UIImageView(image: UIImage(named: "logoZeplin"))
     
-    // MARK: - Initialization
-    init() {
-        bag = DisposeBag()
-        viewModel = LoginWebViewModel()
-        loadingView = LoadingView()
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        bindLoading()
-        bindErrorHandling()
-        observeDatasource()
+    // Setting fake user agent is important to enable logging in with Google.
+    viewSource.webView.customUserAgent = AppConfig.userAgent.value
+    
+    if let url = URL(string: AppConfig.callbackUrl.value) {
+      viewSource.webView.load(URLRequest(url: url))
     }
     
-    // MARK: - Life cycle
-    override func loadView() {
-        view = viewSource
-        view.backgroundColor = .white
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.titleView = UIImageView(image: UIImage(named: "logoZeplin"))
-        
-        // Setting fake user agent is important to enable logging in with Google.
-        let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
-        viewSource.webView.customUserAgent = userAgent
-        
-        let url = URL(string: "https://api.zeplin.dev/v1/oauth/authorize?response_type=code&client_id=5e55244862025d78ef97b512&redirect_uri=https://api.relevantfruit.com/v1/zeplin/callback&state=login")!
-    
-        let urlRequest = URLRequest(url: url)
-        viewSource.webView.load(urlRequest)
-    }
-
+    observeDatasource()
+  }
 }
 
 // MARK: - Observe Datasource
 private extension LoginWebViewController {
-    private func observeDatasource() {
-        viewSource.webView.navigationDelegate = self
-    }
+  private func observeDatasource() {
+    viewSource.webView.navigationDelegate = self
+    
+    viewSource.onClose()
+      .asDriver()
+      .drive(onNext: { _ in self.viewModel.dismissRequired() })
+      .disposed(by: viewSource.bag)
+  }
 }
 
 // MARK: - WebView Delegate
 extension LoginWebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if let path = webView.url?.absoluteString {
-            print("path", path)
-            if path.contains("/v1/zeplin") {
-                webView
-                    .evaluateJavaScript("document.documentElement.querySelector('pre').innerHTML.toString()", completionHandler: { (html: Any?, error: Error?) in
-                        if let response = html as? String,
-                            let data = response.data(using: .utf8),
-                            let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
-                            let callbackResponse = try? CallbackResponse(map: Mapper(JSON: dictionary)) {
-                           
-                            self.completionObservable.onNext(callbackResponse)
-                        } else {
-                            self.completionObservable.onNext(nil)
-                        }
-                        
-                        self.completionObservable.onCompleted()
-                    
-                })
+  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    if let path = webView.url?.absoluteString {
+      if path.contains("/v1/zeplin") {
+        
+        webView
+          .evaluateJavaScript(AppConfig.documentQueryPath.value, completionHandler: { (html: Any?, error: Error?) in
+            if let error = error {
+              return self.rx.showAlert.onNext(.init(message: "An error occurred while getting response. \(error.localizedDescription)".localized()))
             }
-        }
+            
+            if let response = html as? String,
+              let data = response.data(using: .utf8),
+              let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
+              let callbackResponse = try? CallbackResponse(map: Mapper(JSON: dictionary)) {
+              
+              self.viewModel.completed(with: callbackResponse)
+            } else {
+              self.rx.showAlert.onNext(.init(message: "An error occurred. Response from Zeplin servers are wrong."))
+            }
+          })
+      }
     }
+  }
 }

@@ -10,14 +10,14 @@ import Foundation
 import Mapper
 
 struct Member: Mappable {
-    let user: User
-    let role: String
-    let restricted: Bool?
-    
-    init(map: Mapper) throws {
-        try user = map.from("user")
-        try role = map.from("role")
-        restricted = map.optionalFrom("restricted") ?? false
-    }
+  let user: User
+  let role: String
+  let restricted: Bool?
+  
+  init(map: Mapper) throws {
+    try user = map.from("user")
+    try role = map.from("role")
+    restricted = map.optionalFrom("restricted") ?? false
+  }
 }
 

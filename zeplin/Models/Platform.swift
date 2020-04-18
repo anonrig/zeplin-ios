@@ -9,9 +9,9 @@
 import UIKit
 
 enum Platform: String {
-    case base = "base"
-    case web = "web"
-    case ios = "ios"
-    case android = "android"
-    case macos = "macos"
+  case base = "base"
+  case web = "web"
+  case ios = "ios"
+  case android = "android"
+  case macos = "macos"
 }

@@ -10,11 +10,11 @@ import UIKit
 import Mapper
 
 struct CallbackResponse: Mappable {
-    let user: User
-    let token: String
-    
-    init(map: Mapper) throws {
-        try user = map.from("user")
-        try token = map.from("token")
-    }
+  let user: User
+  let token: String
+  
+  init(map: Mapper) throws {
+    try user = map.from("user")
+    try token = map.from("token")
+  }
 }

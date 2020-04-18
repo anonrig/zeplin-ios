@@ -9,7 +9,7 @@
 import UIKit
 
 enum ProjectStatus: String {
-    case all = "all"
-    case active = "active"
-    case archived = "archived"
+  case all = "all"
+  case active = "active"
+  case archived = "archived"
 }

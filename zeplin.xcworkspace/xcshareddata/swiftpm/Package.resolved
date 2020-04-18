@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "59037bfd28aa963a7916f1eb22a74107a3522f16",
-          "version": "5.0.5"
+          "revision": "fca036f7aeca07124067cb6e0c12b0ad6359e3d4",
+          "version": "5.1.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/evgenyneu/keychain-swift",
         "state": {
           "branch": null,
-          "revision": "d9b76fba09c2eb5c0bb9312092d309c833996cd2",
-          "version": "18.0.0"
+          "revision": "96fb84f45a96630e7583903bd7e08cf095c7a7ef",
+          "version": "19.0.0"
         }
       },
       {
@@ -92,12 +92,48 @@
         }
       },
       {
+        "package": "Reachability",
+        "repositoryURL": "https://github.com/ashleymills/Reachability.swift",
+        "state": {
+          "branch": null,
+          "revision": "98e968e7b6c1318fb61df23e347bc319761e8acb",
+          "version": "5.0.0"
+        }
+      },
+      {
         "package": "ReactiveSwift",
         "repositoryURL": "https://github.com/Moya/ReactiveSwift.git",
         "state": {
           "branch": null,
           "revision": "f195d82bb30e412e70446e2b4a77e1b514099e88",
           "version": "6.1.0"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa.git",
+        "state": {
+          "branch": null,
+          "revision": "fa43b8e2909334c79f233ce472332c136ca108da",
+          "version": "4.4.1"
+        }
+      },
+      {
+        "package": "RealmCore",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "35662ff940e340bf630ad1d1d88acfc7af18bee6",
+          "version": "5.23.8"
+        }
+      },
+      {
+        "package": "Reusable",
+        "repositoryURL": "https://github.com/AliSoftware/Reusable",
+        "state": {
+          "branch": null,
+          "revision": "86cd17aa27e80d20bfe2ea57dd08958cf64664f4",
+          "version": "4.1.1"
         }
       },
       {
@@ -110,12 +146,39 @@
         }
       },
       {
+        "package": "RxFlow",
+        "repositoryURL": "https://github.com/rxswiftcommunity/rxflow",
+        "state": {
+          "branch": null,
+          "revision": "16e63a1d10f1e9de2393d4ec984deb5f53a9e8ee",
+          "version": "2.7.0"
+        }
+      },
+      {
+        "package": "RxRealm",
+        "repositoryURL": "https://github.com/RxSwiftCommunity/RxRealm",
+        "state": {
+          "branch": null,
+          "revision": "70188d79fe2eb19b5013dd1deae33e9e53f10e76",
+          "version": "2.0.0"
+        }
+      },
+      {
         "package": "RxSwift",
-        "repositoryURL": "https://github.com/reactivex/rxswift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
           "branch": null,
           "revision": "002d325b0bdee94e7882e1114af5ff4fe1e96afa",
           "version": "5.1.1"
+        }
+      },
+      {
+        "package": "Sentry",
+        "repositoryURL": "https://github.com/getsentry/sentry-cocoa",
+        "state": {
+          "branch": "master",
+          "revision": "572d82d496e6d6f455b61cf1195e77eabc7b3ec3",
+          "version": null
         }
       },
       {
@@ -133,16 +196,7 @@
         "state": {
           "branch": null,
           "revision": "796981500de29ee72f72ef8e9c46eaed2fe6364e",
-          "version": "1.2.3"
-        }
-      },
-      {
-        "package": "SwifterSwift",
-        "repositoryURL": "https://github.com/SwifterSwift/SwifterSwift",
-        "state": {
-          "branch": null,
-          "revision": "f9f0c151aa70d3199eff512b903d1f8cff7ff856",
-          "version": "5.1.0"
+          "version": null
         }
       },
       {
@@ -159,7 +213,7 @@
         "repositoryURL": "https://github.com/relevantfruit/toolkit",
         "state": {
           "branch": "master",
-          "revision": "1f69d076e741fe3f90fa88e0da41be4f3fe2037a",
+          "revision": "ac5b137ac322cab947138860a6f94e4539454c18",
           "version": null
         }
       }
