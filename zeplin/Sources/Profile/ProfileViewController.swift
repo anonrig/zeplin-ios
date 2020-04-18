@@ -18,7 +18,7 @@ final class ProfileViewController: UIViewController, ViewModelBased, LoadableCon
   var LoadingViewType: LoadableView.Type = LoadingView.self
   
   // MARK: - Properties
-  let viewSource = ProfileView()
+  lazy var viewSource = ProfileView(user: viewModel.services.preferenceServices.user.value)
   var viewModel: ProfileViewModel!
   let bag = DisposeBag()
   
@@ -54,12 +54,6 @@ extension ProfileViewController {
       .observeOn(MainScheduler.instance)
       .do(onNext: { self.viewModel.actionRequired($0) })
       .subscribe()
-      .disposed(by: viewSource.bag)
-    
-    viewModel.user
-      .filter { $0 != nil }
-      .map { $0! }
-      .subscribe(onNext: self.viewSource.populate(with:))
       .disposed(by: viewSource.bag)
   }
 }

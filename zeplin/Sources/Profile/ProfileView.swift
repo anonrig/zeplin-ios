@@ -17,14 +17,7 @@ final class ProfileView: UIView {
   // MARK: - Properties
   var bag = DisposeBag()
   
-  private let userImageView: UIImageView = {
-    let view = UIImageView()
-    view.kf.indicatorType = .activity
-    view.snp.makeConstraints { $0.size.equalTo(60) }
-    view.cornerRadius = 30
-    view.backgroundColor = .white
-    return view
-  }()
+  private let userImageView: UIView
   
   private let usernameLabel: UILabel = .create(text: "", numberOfLines: 1, textAlignment: .left, textColor: .white, font: .regular(20))
   
@@ -95,7 +88,16 @@ final class ProfileView: UIView {
   ], axis: .vertical, alignment: .fill, distribution: .fill, spacing: 0)
   
   // MARK: - Initialization
-  init() {
+  init(user: User?) {
+    if let user = user {
+      userImageView = user.getProfileImage(size: 60, emotarSize: 24, initialSize: 18)
+      usernameLabel.text = user.username
+      emailLabel.text = user.email
+    } else {
+      userImageView = UIView()
+    }
+    
+
     super.init(frame: .zero)
     
     [userImageView, userStack, buttonStack].forEach(addSubview(_:))
@@ -127,15 +129,6 @@ final class ProfileView: UIView {
 
 // MARK: - Populate
 extension ProfileView {
-  func populate(with user: User) {
-    if let avatar = user.avatar, let url = URL(string: avatar) {
-      userImageView.kf.setImage(with: url)
-    }
-    
-    usernameLabel.text = user.username
-    emailLabel.text = user.email
-  }
-  
   func onPrivacyPolicy() -> ControlEvent<Void> {
     return privacyPolicyButton.rx.tap
   }

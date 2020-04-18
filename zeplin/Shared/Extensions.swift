@@ -27,6 +27,19 @@ var bundleID: String {
   return Bundle.main.bundleIdentifier ?? ""
 }
 
+extension Date {
+  func daysUntil(to: Date) -> String {
+    let between =  Calendar.current.dateComponents([.year, .month, .day], from: self, to: to)
+
+    if between.year ?? 0 > 0 {
+      return "\(between.year ?? 0)y"
+    } else if between.month ?? 0 > 0 {
+      return "\(between.month ?? 0)m"
+    } else {
+      return "\(between.day ?? 1)d"
+    }
+  }
+}
 
 extension UINavigationController {
   func setupStyling() {

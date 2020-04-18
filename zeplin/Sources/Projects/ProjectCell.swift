@@ -67,8 +67,8 @@ final class ProjectCell: UICollectionViewCell, Reusable {
 extension ProjectCell {
   func populate(with project: Project, isArchived: Bool = false) {
     overlay.alpha = isArchived ? 0.5 : 0
-    
-    memberStack.arrangedSubviews.forEach { memberStack.removeArrangedSubview($0) }
+        
+    memberStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
     
     if let thumbnail = project.thumbnail, let url = URL(string: thumbnail) {
       imageView.kf.setImage(with: url)
@@ -77,7 +77,8 @@ extension ProjectCell {
     if let platform = project.platform {
       platformLabel.text = String(describing: platform).uppercased()
     }
-    dateLabel.text = project.created?.description
+
+    dateLabel.text = project.created?.daysUntil(to: Date())
     projectLabel.text = project.name
     if let members = project.number_of_members {
       memberCountLabel.text = members - 5 > 0 ? "+" + String(members - 5) : ""
@@ -85,36 +86,12 @@ extension ProjectCell {
     
     for n in 0...4 {
       if let member = project.members.at(index: n) {
-        let user = member.user
-        if let avatar = user.avatar, let url = URL(string: avatar) {
-          let imageView = UIImageView()
-          imageView.kf.setImage(with: url)
-          imageView.kf.indicatorType = .activity
-          imageView.contentMode = .scaleAspectFill
-          imageView.snp.makeConstraints { $0.size.equalTo(16)}
-          imageView.cornerRadius = 8
-          memberStack.addArrangedSubview(imageView)
-        } else if let emotar = user.emotar {
-          let label = UILabel()
-          label.text = emotar
-          label.snp.makeConstraints { $0.size.equalTo(16)}
-          label.sizeToFit()
-          label.font = .medium(11)
-          memberStack.addArrangedSubview(label)
-        } else {
-          let label = UILabel()
-          label.text = user.getPrefix()
-          label.backgroundColor = .black
-          label.font = .semiBold(8)
-          label.textAlignment = .center
-          label.cornerRadius = 8
-          label.snp.makeConstraints { $0.size.equalTo(16)}
-          label.sizeToFit()
-          memberStack.addArrangedSubview(label)
-        }
+        memberStack.insertArrangedSubview(member.user.getProfileImage(size: 16), at: n)
       } else {
-        memberStack.addArrangedSubview(UIView())
+        memberStack.insertArrangedSubview(UIView(), at: n)
       }
     }
+    
+    layoutIfNeeded()
   }
 }
