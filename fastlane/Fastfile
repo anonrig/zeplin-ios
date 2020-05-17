@@ -1,0 +1,42 @@
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do |lane, options|
+    match(app_identifier: [
+        "relevant.fruit.zeplin",
+        "relevant.fruit.zeplin.NotificationService"
+      ],
+      type: "appstore",
+      readonly: is_ci)
+  end
+
+  lane :build do
+    cocoapods(clean_install: true)
+    analyze_commits(match: "*")
+    next_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
+
+    increment_build_number
+    increment_version_number(version_number: next_version)
+    commit_version_bump
+
+    gym(workspace: "zeplin.xcworkspace", scheme: "zeplin")
+
+    changelog = conventional_changelog(title: "Zeplin Client", format: 'plain')
+    testflight(changelog: changelog, skip_submission: true)
+
+    post_deploy()
+  end
+
+  desc "Generates release notes for slack and create the next tag"
+  lane :post_deploy do |options|
+    next_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
+    notes = conventional_changelog(title: "Zeplin Client", format: 'slack')
+
+    add_git_tag(tag: "ios/#{next_version}/#{build_number}")
+    push_git_tags
+
+    slack(message: notes)
+  end
+end
