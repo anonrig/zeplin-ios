@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   release_job:
-    runs-on: macOS
+    runs-on: macos-latest
     name: "Build Zeplin Client"
     steps:
       - name: "Source code checkout"
