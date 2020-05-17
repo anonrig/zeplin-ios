@@ -871,8 +871,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -899,8 +899,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -924,8 +924,8 @@
 			baseConfigurationReference = 7020DC1D485FC491DC670291 /* Pods-NotificationService.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -951,8 +951,8 @@
 			baseConfigurationReference = 60B1683C46DBFA6BA8290F1A /* Pods-NotificationService.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = KPEKRP6RU9;
+				CURRENT_PROJECT_VERSION = 17;
+				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
