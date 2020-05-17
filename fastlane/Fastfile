@@ -4,12 +4,13 @@ default_platform(:ios)
 
 platform :ios do
   before_all do |lane, options|
-    match(app_identifier: [
-        "relevant.fruit.zeplin",
-        "relevant.fruit.zeplin.NotificationService"
-      ],
-      type: "appstore",
-      readonly: is_ci)
+    setup_ci
+    produce(
+      app_identifier: "relevant.fruit.zeplin.NotificationService",
+      app_name: "NotificationService",
+      skip_itc: true
+    )
+    match(readonly: is_ci)
   end
 
   lane :build do
@@ -21,7 +22,7 @@ platform :ios do
     increment_version_number(version_number: next_version)
     commit_version_bump
 
-    gym(workspace: "zeplin.xcworkspace", scheme: "zeplin")
+    gym(workspace: "zeplin.xcworkspace", scheme: "zeplin", export_xcargs: "-allowProvisioningUpdates")
 
     changelog = conventional_changelog(title: "Zeplin Client", format: 'plain')
     testflight(changelog: changelog, skip_submission: true)

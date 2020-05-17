@@ -1,3 +1,7 @@
-git_url("git@github.com:relevantfruit/certificates.git")
+git_url("https://github.com/relevantfruit/certificates")
 storage_mode("git")
 type("development")
+app_identifier([
+  "relevant.fruit.zeplin",
+  "relevant.fruit.zeplin.NotificationService"
+])
