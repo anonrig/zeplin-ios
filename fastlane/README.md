@@ -16,6 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios certificates
+```
+fastlane ios certificates
+```
+
 ### ios build
 ```
 fastlane ios build
@@ -26,6 +31,16 @@ fastlane ios build
 fastlane ios post_deploy
 ```
 Generates release notes for slack and create the next tag
+### ios inform_sentry
+```
+fastlane ios inform_sentry
+```
+Upload DSYM and release on Sentry
+### ios release
+```
+fastlane ios release
+```
+Release application to AppStore
 
 ----
 

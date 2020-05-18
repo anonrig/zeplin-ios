@@ -23,3 +23,5 @@ jobs:
           SLACK_URL: ${{ secrets.SLACK_URL }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_SLUG }}

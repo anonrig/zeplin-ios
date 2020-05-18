@@ -4,40 +4,91 @@ default_platform(:ios)
 
 platform :ios do
   before_all do |lane, options|
-    setup_ci
-    produce(
-      app_identifier: "relevant.fruit.zeplin.NotificationService",
-      app_name: "NotificationService",
-      skip_itc: true
-    )
-    match(readonly: is_ci)
+    app_identifiers = [
+      "relevant.fruit.zeplin",
+      "relevant.fruit.zeplin.NotificationService"
+    ]
+
+    if is_ci
+      create_keychain(
+        name: "CI",
+        password: ENV["MATCH_PASSWORD"],
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: false
+      )
+
+      match(readonly: true, keychain_name: "CI", keychain_password: ENV["MATCH_PASSWORD"], app_identifier: app_identifiers)
+
+      sh("security list-keychains -d user") 
+      sh("security default-keychain -d user")
+      sh("security find-identity -v -p codesigning CI")
+    else
+      match(app_identifier: app_identifiers)
+    end
+  end
+
+  lane :certificates do
+    match(app_identifier: ["relevant.fruit.zeplin", "relevant.fruit.zeplin.NotificationService"])
   end
 
   lane :build do
-    cocoapods(clean_install: true)
+    cocoapods
     analyze_commits(match: "*")
     next_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
 
-    increment_build_number
     increment_version_number(version_number: next_version)
+    increment_build_number
     commit_version_bump
 
-    gym(workspace: "zeplin.xcworkspace", scheme: "zeplin", export_xcargs: "-allowProvisioningUpdates")
+    gym(scheme: "zeplin", silent: true, workspace: "zeplin.xcworkspace")
 
     changelog = conventional_changelog(title: "Zeplin Client", format: 'plain')
     testflight(changelog: changelog, skip_submission: true)
 
-    post_deploy()
+    post_deploy
+    inform_sentry
   end
 
   desc "Generates release notes for slack and create the next tag"
   lane :post_deploy do |options|
     next_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
-    notes = conventional_changelog(title: "Zeplin Client", format: 'slack')
-
-    add_git_tag(tag: "ios/#{next_version}/#{build_number}")
-    push_git_tags
-
+    notes = conventional_changelog(title: app_name, format: "slack")
+    markdownChangelog = conventional_changelog(title: app_name, format: "markdown")
+    add_git_tag(tag: "ios/#{next_version}/#{build_number}", message: markdownChangelog)
+    push_to_git_remote
     slack(message: notes)
+  end
+
+  desc "Upload DSYM and release on Sentry"
+  lane :inform_sentry do
+    current_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
+    sentry_upload_dsym(
+      project_slug: 'zeplin',
+      dsym_path: '../Zeplin.dSYM.zip',
+    )
+
+    sentry_create_release(
+      version: current_version,
+      app_identifier: bundle_identifier,
+      finalize: true
+    )
+
+    sentry_set_commits(
+      version: current_version,
+      app_identifier: bundle_identifier,
+      auto: true,
+      clear: false,
+      commit: "$VERSION"
+    )
+  end
+
+  desc "Release application to AppStore"
+  lane :release do
+    sync_code_signing(type: "appstore")  # see code signing guide for more information
+    build_app(scheme: "MyApp")
+    upload_to_app_store                  # upload your app to App Store Connect
+    slack(message: "Successfully uploaded a new App Store build")
   end
 end
