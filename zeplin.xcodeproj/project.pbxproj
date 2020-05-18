@@ -870,8 +870,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 17;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -886,6 +887,7 @@
 				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin;
 				PRODUCT_NAME = Zeplin;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore relevant.fruit.zeplin";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -898,8 +900,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 17;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -914,6 +917,7 @@
 				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin;
 				PRODUCT_NAME = Zeplin;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore relevant.fruit.zeplin";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -923,8 +927,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7020DC1D485FC491DC670291 /* Pods-NotificationService.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 17;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -940,6 +945,7 @@
 				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore relevant.fruit.zeplin.NotificationService";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -950,8 +956,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60B1683C46DBFA6BA8290F1A /* Pods-NotificationService.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 17;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -967,6 +974,7 @@
 				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = relevant.fruit.zeplin.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore relevant.fruit.zeplin.NotificationService";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
