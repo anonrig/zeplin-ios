@@ -56,8 +56,8 @@ platform :ios do
   desc "Generates release notes for slack and create the next tag"
   lane :post_deploy do |options|
     next_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
-    notes = conventional_changelog(title: app_name, format: "slack")
-    markdownChangelog = conventional_changelog(title: app_name, format: "markdown")
+    notes = conventional_changelog(title: "Zeplin", format: "slack")
+    markdownChangelog = conventional_changelog(title: "Zeplin", format: "markdown")
     add_git_tag(tag: "ios/#{next_version}/#{build_number}", message: markdownChangelog)
     push_to_git_remote
     slack(message: notes)
