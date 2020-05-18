@@ -1,3 +1,4 @@
 git_url("git@github.com:relevantfruit/certificates.git")
 storage_mode("git")
 username("bot@relevantfruit.com")
+type("appstore")

@@ -9,21 +9,18 @@ platform :ios do
       "relevant.fruit.zeplin.NotificationService"
     ]
 
+    produce(
+      app_identifier: "relevant.fruit.zeplin",
+      app_name: "Zeplin",
+      skip_itc: true,
+      enable_services: {
+        push_notification: "on"
+      }
+    )
+
     if is_ci
-      create_keychain(
-        name: "CI",
-        password: ENV["MATCH_PASSWORD"],
-        default_keychain: true,
-        unlock: true,
-        timeout: 3600,
-        lock_when_sleeps: false
-      )
-
-      match(readonly: true, keychain_name: "CI", keychain_password: ENV["MATCH_PASSWORD"], app_identifier: app_identifiers)
-
-      sh("security list-keychains -d user") 
-      sh("security default-keychain -d user")
-      sh("security find-identity -v -p codesigning CI")
+      setup_ci
+      match(app_identifier: app_identifiers, readonly: true, git_url: "https://github.com/relevantfruit/certificates")
     else
       match(app_identifier: app_identifiers)
     end
@@ -40,12 +37,17 @@ platform :ios do
 
     increment_version_number(version_number: next_version)
     increment_build_number
-    commit_version_bump
+    commit_version_bump(xcodeproj: "zeplin.xcodeproj")
 
-    gym(scheme: "zeplin", silent: true, workspace: "zeplin.xcworkspace")
+    gym(scheme: "zeplin",
+      export_method: "app-store",
+      silent: true,
+      workspace: "zeplin.xcworkspace",
+      xcargs: "-parallelizeTargets",
+      configuration: "Release")
 
     changelog = conventional_changelog(title: "Zeplin Client", format: 'plain')
-    testflight(changelog: changelog, skip_submission: true)
+    testflight(changelog: changelog, skip_submission: true, skip_waiting_for_build_processing: true)
 
     post_deploy
     inform_sentry

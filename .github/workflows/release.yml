@@ -6,22 +6,44 @@ on:
 jobs:
   release_job:
     runs-on: macos-latest
-    name: "Build Zeplin Client"
+    name: Build Zeplin Client
     steps:
-      - name: "Source code checkout"
+      - name: Checkout source code
         uses: actions/checkout@v1
-      - name: "Build application using fastlane"
-        uses: maierj/fastlane-action@v1.4.0
+      - name: Cache Gemfile
+        uses: actions/cache@v1
         with:
-          lane: "build"
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gem-
+      - name: Cache Cocoapods
+        uses: actions/cache@v1
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+      - name: Cache Swift Package Manager
+        uses: actions/cache@v1
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+      - name: Install dependencies
+        run: |
+          gem install bundler --no-document
+          bundle config set deployment 'true'
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+      - name: "Build application"
+        run: bundle exec fastlane build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           SLACK_URL: ${{ secrets.SLACK_URL }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_SLUG }}
