@@ -7,16 +7,20 @@ jobs:
   release_job:
     runs-on: macos-latest
     name: Build Zeplin Client
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      SLACK_URL: ${{ secrets.SLACK_URL }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_SLUG }}
     steps:
-      - name: Save bot credentials
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 0700 ~/.ssh/id_rsa
       - name: Checkout source code
         uses: actions/checkout@v2
+      - uses: webfactory/ssh-agent@v0.2.0
         with:
-          ssh-key: ${{ secrets.SSH_KEY }}
+          ssh-private-key: ${{ secrets.SSH_KEY }}
       - name: Cache Gemfile
         uses: actions/cache@v1
         with:
@@ -45,11 +49,3 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: "Build application"
         run: bundle exec fastlane build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          SLACK_URL: ${{ secrets.SLACK_URL }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_SLUG }}
