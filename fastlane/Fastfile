@@ -1,4 +1,4 @@
-# update_fastlane
+update_fastlane
 
 default_platform(:ios)
 
@@ -9,29 +9,17 @@ platform :ios do
       "relevant.fruit.zeplin.NotificationService"
     ]
 
-    produce(
-      app_identifier: "relevant.fruit.zeplin",
-      app_name: "Zeplin",
-      skip_itc: true,
-      enable_services: {
-        push_notification: "on"
-      }
-    )
-
-    if is_ci
-      setup_ci
-      match(app_identifier: app_identifiers, readonly: true)
-    else
-      match(app_identifier: app_identifiers)
-    end
+    setup_ci
+    match(app_identifier: app_identifiers)
   end
 
   lane :certificates do
-    match(app_identifier: ["relevant.fruit.zeplin", "relevant.fruit.zeplin.NotificationService"])
+    get_push_certificate
+    match(type: "development", app_identifier: ["relevant.fruit.zeplin", "relevant.fruit.zeplin.NotificationService"])
+    match(type: "appstore", app_identifier: ["relevant.fruit.zeplin", "relevant.fruit.zeplin.NotificationService"])
   end
 
   lane :build do
-    get_push_certificate
     cocoapods
     analyze_commits(match: "*")
     next_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
@@ -43,7 +31,6 @@ platform :ios do
     gym(scheme: "zeplin",
       export_method: "app-store",
       silent: true,
-      export_xcargs: "-allowProvisioningUpdates",
       workspace: "zeplin.xcworkspace",
       xcargs: "-parallelizeTargets",
       configuration: "Release")

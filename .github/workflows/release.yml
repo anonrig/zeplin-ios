@@ -16,11 +16,13 @@ jobs:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_SLUG }}
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      - uses: webfactory/ssh-agent@v0.2.0
+      - uses: webfactory/ssh-agent@v0.3.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
+      - run: |
+          git clone git@github.com:$GITHUB_REPOSITORY.git $GITHUB_WORKSPACE
+          git config --global user.name "Fruit Bot"
+          git config --global user.email "bot@relevantfruit.com"
       - name: Cache Gemfile
         uses: actions/cache@v1
         with:
