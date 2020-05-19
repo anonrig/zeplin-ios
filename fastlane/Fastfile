@@ -1,4 +1,4 @@
-update_fastlane
+# update_fastlane
 
 default_platform(:ios)
 
@@ -31,6 +31,7 @@ platform :ios do
   end
 
   lane :build do
+    get_push_certificate
     cocoapods
     analyze_commits(match: "*")
     next_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
@@ -42,6 +43,7 @@ platform :ios do
     gym(scheme: "zeplin",
       export_method: "app-store",
       silent: true,
+      export_xcargs: "-allowProvisioningUpdates",
       workspace: "zeplin.xcworkspace",
       xcargs: "-parallelizeTargets",
       configuration: "Release")
