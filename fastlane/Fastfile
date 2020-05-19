@@ -26,7 +26,7 @@ platform :ios do
 
     increment_version_number(version_number: next_version)
     increment_build_number
-    commit_version_bump(xcodeproj: "zeplin.xcodeproj")
+    commit_version_bump(xcodeproj: "zeplin.xcodeproj", message: "chore: release #{next_version}/#{get_build_number} [skip ci]")
 
     gym(scheme: "zeplin",
       export_method: "app-store",
@@ -36,38 +36,49 @@ platform :ios do
       configuration: "Release")
 
     changelog = conventional_changelog(title: "Zeplin Client", format: 'plain')
-    testflight(changelog: changelog, skip_submission: true)
 
-    post_deploy
-    inform_sentry
+    set_changelog(changelog: changelog, 
+      app_identifier: "relevant.fruit.zeplin", 
+      version: next_version)
+
+    testflight(changelog: changelog,
+      skip_submission: true,
+      skip_waiting_for_build_processing: false,
+      uses_non_exempt_encryption: true,
+      expire_previous_builds: true)
+
+    post_deploy(version_number: next_version, build_number: get_build_number)
+    inform_sentry(version_number: next_version)
   end
 
   desc "Generates release notes for slack and create the next tag"
   lane :post_deploy do |options|
     notes = conventional_changelog(title: "Zeplin", format: "slack")
     markdownChangelog = conventional_changelog(title: "Zeplin", format: "markdown")
-    add_git_tag(tag: "ios/#{SharedValues::VERSION_NUMBER}/#{SharedValues::BUILD_NUMBER}", message: markdownChangelog)
+
+    tag_name = "#{options.version_number}/#{options.build_number}"
+    add_git_tag(tag: tag_name, message: markdownChangelog)
     push_to_git_remote
+    set_github_release(tag_name: options.version_number, name: tag_name, description: markdownChangelog)
     slack(message: notes)
   end
 
   desc "Upload DSYM and release on Sentry"
-  lane :inform_sentry do
-    current_version = lane_context[SharedValues::RELEASE_NEXT_VERSION]
+  lane :inform_sentry do |options|
     sentry_upload_dsym(
       project_slug: 'zeplin',
-      dsym_path: '../Zeplin.dSYM.zip',
+      dsym_path: './Zeplin.dSYM.zip',
     )
 
     sentry_create_release(
-      version: current_version,
-      app_identifier: bundle_identifier,
+      version: options.version_number,
+      app_identifier: "relevant.fruit.zeplin",
       finalize: true
     )
 
     sentry_set_commits(
-      version: current_version,
-      app_identifier: bundle_identifier,
+      version: options.version_number,
+      app_identifier: "relevant.fruit.zeplin",
       auto: true,
       clear: false,
       commit: "$VERSION"
