@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v1
+      - name: Setup SSH
+        uses: fusion-engineering/setup-git-credentials@v2
+        with:
+          credentials: ${{ secrets.GIT_CREDENTIALS }}
       - name: Cache Gemfile
         uses: actions/cache@v1
         with:
