@@ -20,7 +20,7 @@ platform :ios do
 
     if is_ci
       setup_ci
-      match(app_identifier: app_identifiers, readonly: true, git_url: "https://github.com/relevantfruit/certificates")
+      match(app_identifier: app_identifiers, readonly: true)
     else
       match(app_identifier: app_identifiers)
     end
