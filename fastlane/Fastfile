@@ -47,8 +47,8 @@ platform :ios do
       uses_non_exempt_encryption: true,
       expire_previous_builds: true)
 
-    post_deploy(version_number: next_version, build_number: get_build_number)
-    inform_sentry(version_number: next_version)
+    post_deploy({version_number: next_version, build_number: get_build_number})
+    inform_sentry({version_number: next_version})
   end
 
   desc "Generates release notes for slack and create the next tag"
@@ -57,7 +57,7 @@ platform :ios do
     markdownChangelog = conventional_changelog(title: "Zeplin", format: "markdown")
 
     tag_name = "#{options.version_number}/#{options.build_number}"
-    add_git_tag(tag: tag_name, message: markdownChangelog)
+    add_git_tag(tag: tag_name, message: "Release of #{tag_name}")
     push_to_git_remote
     set_github_release(tag_name: options.version_number, name: tag_name, description: markdownChangelog)
     slack(message: notes)
