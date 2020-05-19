@@ -8,6 +8,11 @@ jobs:
     runs-on: macos-latest
     name: Build Zeplin Client
     steps:
+      - name: Save bot credentials
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 0700 ~/.ssh/id_rsa
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
