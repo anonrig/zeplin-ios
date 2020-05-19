@@ -9,7 +9,9 @@ jobs:
     name: Build Zeplin Client
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.SSH_KEY }}
       - name: Cache Gemfile
         uses: actions/cache@v1
         with:
