@@ -47,7 +47,7 @@ platform :ios do
       configuration: "Release")
 
     changelog = conventional_changelog(title: "Zeplin Client", format: 'plain')
-    testflight(changelog: changelog, skip_submission: true, skip_waiting_for_build_processing: true)
+    testflight(changelog: changelog, skip_submission: true)
 
     post_deploy
     inform_sentry
