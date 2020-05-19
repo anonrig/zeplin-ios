@@ -42,10 +42,14 @@ platform :ios do
       version: next_version)
 
     testflight(changelog: changelog,
-      skip_submission: true,
       skip_waiting_for_build_processing: false,
-      uses_non_exempt_encryption: true,
-      expire_previous_builds: true)
+      uses_non_exempt_encryption: false,
+      expire_previous_builds: true,
+      localized_build_info: {
+        default: {
+          whats_new: changelog
+        }
+      })
 
     post_deploy({version_number: next_version, build_number: get_build_number})
     inform_sentry({version_number: next_version})
