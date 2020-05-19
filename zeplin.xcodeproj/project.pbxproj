@@ -874,7 +874,7 @@
 				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -904,7 +904,7 @@
 				CODE_SIGN_ENTITLEMENTS = zeplin/Zeplin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -931,7 +931,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -960,7 +960,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = RJT2ZG7N88;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
